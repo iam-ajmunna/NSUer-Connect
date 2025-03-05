@@ -1,9 +1,12 @@
-# NSUer-Connect
-NSUer Connect – A Web platform designed for North South University students. It provides NSU ID login, course details, personal reminders, CGPA analysis &amp; prediction, and curriculum planning to help students stay organized and succeed academically. 🚀📚
-Stay organized with:
-✅ NSU ID Login for verified student access
-✅ Course Information – Offered courses, timings, sections & faculty initials
-✅ Personal Routine & Reminders – Never miss a quiz, midterm, or assignment
-✅ CGPA Analysis & Prediction – Track progress & forecast future CGPA
-✅ Curriculum Planning – Plan your academic journey efficiently
-🚀 Coming Soon: AI-powered NSU Assistant 🤖
+<sup>Group Name: </sup><h1 align ="center">AVENGERS</h1>
+<sup>Project Name: </sup><h2 align ="center">NSUer-Connect</h2>
+<div align="center">
+
+| Student Name              | NSU ID     |
+|---------------------------|------------|
+| Assaduzzaman Munna        | 2211796042 |
+| Mushfika Hossain Piya     | 2211426042 |
+| Ahammed Jumma             | 2211263042 |
+| Asif Akbar Zishan         | 2211548042 |
+
+</div>
