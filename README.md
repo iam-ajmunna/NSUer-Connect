@@ -1,5 +1,5 @@
 <sup>Group Name: </sup><h1 align ="center">AVENGERS</h1>
-<sup>Project Name: </sup><h2 align ="center">NSUer-Connect</h2>
+<sup>Project Name: </sup><h2 align ="center">NSUer Connect</h2>
 <div align="center">
 
 | Student Name              | NSU ID     |
