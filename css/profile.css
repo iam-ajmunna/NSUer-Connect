@@ -55,6 +55,7 @@
   font-weight: bold;
   background: linear-gradient(135deg, #82a3ac, #bfd8d2);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
 }
 
