@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NSUer Connect - Courses</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/courses.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="hero-section">
+        <div class="container">
+            <nav class="navbar">
+                <h1 class="logo" data-aos="fade-down">NSUer Connect</h1>
+                <ul class="nav-links" data-aos="fade-up">
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="reminders.html">Reminders</a></li>
+                    <li><a href="cgpa.html">CGPA Analysis</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                </ul>
+            </nav>
+            <div class="hero-content" data-aos="fade-in">
+                <h2>Your Courses</h2>
+                <p>Explore and manage your enrolled courses here.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="courses-section">
+        <div class="container">
+            <div class="courses-list">
+                <div class="course-card" data-aos="fade-up">
+                    <h3>Course 1: Introduction to Computer Science</h3>
+                    <p>Explore the basics of computer science and its applications in the real world.</p>
+                    <a href="course-details.html" class="btn-primary">View Details</a>
+                </div>
+                <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Course 2: Data Structures and Algorithms</h3>
+                    <p>Learn fundamental data structures and algorithms essential for problem-solving.</p>
+                    <a href="course-details.html" class="btn-primary">View Details</a>
+                </div>
+                <div class="course-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Course 3: Web Development</h3>
+                    <p>Get hands-on experience in developing dynamic websites using modern technologies.</p>
+                    <a href="course-details.html" class="btn-primary">View Details</a>
+                </div>
+                <div class="course-card" data-aos="fade-up" data-aos-delay="600">
+                    <h3>Course 4: Operating Systems</h3>
+                    <p>Understand the inner workings of operating systems, process management, and more.</p>
+                    <a href="course-details.html" class="btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" data-aos="fade-up">
+        <div class="container">
+            <p>&copy; 2025 NSUer Connect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

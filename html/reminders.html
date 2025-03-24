@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NSUer Connect - Reminders</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/reminders.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="hero-section">
+        <div class="container">
+            <nav class="navbar">
+                <h1 class="logo" data-aos="fade-down">NSUer Connect</h1>
+                <ul class="nav-links" data-aos="fade-up">
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="cgpa.html">CGPA Analysis</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                </ul>
+            </nav>
+            <div class="hero-content" data-aos="fade-in">
+                <h2>Set and Manage Reminders</h2>
+                <p>Never miss a task, assignment, or deadline.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="reminders-section">
+        <div class="container">
+            <div class="reminders-header" data-aos="fade-up">
+                <h3>Your Reminders</h3>
+                <button class="btn-primary">Add New Reminder</button>
+            </div>
+            <div class="reminders-list">
+                <div class="reminder-card" data-aos="fade-up">
+                    <h4>Reminder 1: Assignment Due</h4>
+                    <p>Due Date: March 30, 2025</p>
+                    <button class="btn-secondary">Mark as Done</button>
+                </div>
+                <div class="reminder-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Reminder 2: Group Project Meeting</h4>
+                    <p>Due Date: April 5, 2025</p>
+                    <button class="btn-secondary">Mark as Done</button>
+                </div>
+                <div class="reminder-card" data-aos="fade-up" data-aos-delay="400">
+                    <h4>Reminder 3: Midterm Exam Preparation</h4>
+                    <p>Due Date: April 10, 2025</p>
+                    <button class="btn-secondary">Mark as Done</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" data-aos="fade-up">
+        <div class="container">
+            <p>&copy; 2025 NSUer Connect. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>
