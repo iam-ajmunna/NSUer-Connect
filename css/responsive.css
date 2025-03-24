@@ -1,0 +1,281 @@
+/* responsive.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Responsive for Hero Section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Adjust Hero Section for Smaller Screens */
+@media (max-width: 1024px) {
+  .hero-section h2 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section h2 {
+    font-size: 2rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .hero-section .navbar {
+    flex-direction: column;
+  }
+
+  .hero-section .logo {
+    font-size: 1.5rem;
+  }
+
+  .hero-section .nav-links {
+    margin-top: 1rem;
+  }
+
+  .hero-section .nav-links li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  .hero-section .nav-links a {
+    font-size: 1.1rem;
+  }
+}
+
+/* Login Section */
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+  min-height: 60vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-form {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  animation: slideInUp 1.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .login-form {
+    padding: 2rem;
+  }
+
+  .input-field {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+}
+
+/* Dashboard Section */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 3rem;
+}
+
+.dashboard .feature-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Profile Section */
+.profile-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 1.5rem;
+  }
+
+  .profile-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-card .profile-details {
+    font-size: 1rem;
+  }
+
+  .profile-card .btn-primary {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Reminders Section */
+.reminders-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.reminder-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .reminder-card {
+    padding: 1.5rem;
+  }
+
+  .reminder-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .reminder-card p {
+    font-size: 1rem;
+  }
+}
+
+/* CGPA Section */
+.cgpa-analysis-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+}
+
+.cgpa-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .cgpa-card {
+    padding: 1.5rem;
+  }
+
+  .cgpa-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .cgpa-card p {
+    font-size: 1rem;
+  }
+}
+
+/* Error Page */
+.error-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.error-title {
+  font-size: 10rem;
+}
+
+.error-content h2 {
+  font-size: 2.5rem;
+}
+
+.error-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .error-title {
+    font-size: 7rem;
+  }
+
+  .error-content h2 {
+    font-size: 2rem;
+  }
+
+  .error-content p {
+    font-size: 1rem;
+  }
+}
+
+/* Adjustments for Smaller Screen Sizes */
+@media (max-width: 600px) {
+  .btn-primary {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+
+  .input-field {
+    font-size: 1rem;
+  }
+
+  .login-form {
+    padding: 1.5rem;
+  }
+
+  .hero-section h2 {
+    font-size: 1.8rem;
+  }
+}
