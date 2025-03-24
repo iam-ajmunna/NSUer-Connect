@@ -1,0 +1,223 @@
+/* Styling for index.html */
+
+/* Hero Section */
+.hero-section {
+  background: var(--gradient-color); /* Gradient background */
+  color: #fff;
+  padding: 6rem 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInDown 1s ease-in-out;
+  color: #fff; /* Bright text */
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #e5e7eb; /* Lighter color for contrast */
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.hero-section .btn-primary {
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  animation: zoomIn 1s ease-in-out;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Features Section */
+.features-section {
+  padding: 4rem 0;
+  background-color: var(--background-color);
+  text-align: center;
+}
+
+.features-section h2.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--primary-color);
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.feature-card p {
+  color: var(--light-text-color);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframe Animations */
+@keyframes fadeInDown {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+      opacity: 0;
+      transform: scale(0.8);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links li {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links li:hover {
+  background-color: var(--primary-color);
+}
+
+.nav-links a {
+  color: #fff; /* Bright color for text */
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ffffff; /* Text turns white on hover */
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-hover);
+  transform: scale(1.05);
+}
+
+/* Footer Styles */
+.footer {
+  padding: 1rem 0;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: #fff;
+  margin-top: 2rem;
+}
+
+.footer p {
+  font-size: 0.9rem;
+}
+
+/* General Animations */
+[data-aos] {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .features {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .feature-card {
+      max-width: 90%;
+  }
+
+  .hero-section h2 {
+      font-size: 2.5rem;
+  }
+
+  .hero-section p {
+      font-size: 1rem;
+  }
+
+  .hero-section .btn-primary {
+      font-size: 1rem;
+  }
+}

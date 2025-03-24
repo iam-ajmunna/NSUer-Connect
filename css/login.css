@@ -1,0 +1,217 @@
+/* login.css */
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Body */
+body {
+  background: linear-gradient(135deg, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-color);
+  text-align: center;
+}
+
+.hero-section h2 {
+  font-size: 3rem;
+  color: #fff;
+  animation: fadeInUp 1.5s ease-in-out;
+  margin-bottom: 1rem;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  color: #e5e7eb;
+  margin-bottom: 2rem;
+  animation: fadeInUp 2s ease-in-out;
+}
+
+.hero-section .navbar {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  animation: fadeInDown 2s ease-in-out;
+}
+
+.hero-section .logo {
+  font-size: 2rem;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.hero-section .nav-links {
+  list-style: none;
+}
+
+.hero-section .nav-links li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.hero-section .nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.hero-section .nav-links a:hover {
+  color: var(--primary-color);
+}
+
+/* Login Section */
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+  min-height: 60vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.login-form {
+  background: #ffffff;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  animation: slideInUp 1.5s ease-in-out;
+}
+
+.login-form .form-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  background-color: #ff7b7b;
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.signup-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section h2 {
+    font-size: 2.5rem;
+  }
+
+  .hero-section p {
+    font-size: 1rem;
+  }
+
+  .login-form {
+    padding: 2rem;
+  }
+
+  .input-field {
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    font-size: 1rem;
+  }
+}
