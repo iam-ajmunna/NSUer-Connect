@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSUer Connect - Courses</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/courses.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+ </head>
+ <body>
+  <div class="container">
+  <header class="header">
+  <img src="images/logo.png" alt="NSU Logo" class="logo">
+  <h1 class="header-title">NSUer Connect</h1>
+  <nav class="nav">
+  <ul class="nav-list">
+  <li class="nav-item">
+  <a href="dashboard.html" class="nav-link">
+  <i class="fas fa-home nav-icon"></i>
+  <span class="nav-text">Dashboard</span>
+  </a>
+  </li>
+  <li class="nav-item">
+  <a href="courses.html" class="nav-link active">
+  <i class="fas fa-book nav-icon"></i>
+  <span class="nav-text">Courses</span>
+  </a>
+  </li>
+  <li class="nav-item">
+  <a href="routine.html" class="nav-link">
+  <i class="fas fa-calendar-week nav-icon"></i>
+  <span class="nav-text">Routine</span>
+  </a>
+  </li>
+  <li class="nav-item">
+  <a href="reminders.html" class="nav-link">
+  <i class="fas fa-clock nav-icon"></i>
+  <span class="nav-text">Reminders</span>
+  </a>
+  </li>
+  <li class="nav-item">
+  <a href="cgpa_analysis.html" class="nav-link">
+  <i class="fas fa-chart-line nav-icon"></i>
+  <span class="nav-text">CGPA Analysis</span>
+  </a>
+  </li>
+  <li class="nav-item">
+  <a href="index.html" class="nav-link">
+  <i class="fas fa-sign-out-alt nav-icon"></i>
+  <span class="nav-text">Logout</span>
+  </a>
+  </li>
+  </ul>
+  </nav>
+  </header>
+  <main class="main">
+  <section id="courses" class="courses-section">
+  <h2 class="section-title">Course Information</h2>
+  <div id="my-courses" class="course-section">
+  <h3 class="subsection-title">My Courses</h3>
+  <div class="table-wrapper">
+  <table class="course-table">
+  <thead class="table-header">
+  <tr>
+  <th class="table-heading">Code</th>
+  <th class="table-heading">Name</th>
+  <th class="table-heading">Faculty</th>
+  <th class="table-heading">Section</th>
+  <th class="table-heading">Timings</th>
+  </tr>
+  </thead>
+  <tbody class="table-body">
+  <tr>
+  <td class="table-cell">[Course 1 Code]</td>
+  <td class="table-cell">[Course 1 Name]</td>
+  <td class="table-cell">[Faculty 1 Initials]</td>
+  <td class="table-cell">[Section 1]</td>
+  <td class="table-cell">[Timings 1]</td>
+  </tr>
+  <tr>
+  <td class="table-cell">[Course 2 Code]</td>
+  <td class="table-cell">[Course 2 Name]</td>
+  <td class="table-cell">[Faculty 2 Initials]</td>
+  <td class="table-cell">[Section 2]</td>
+  <td class="table-cell">[Timings 2]</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <div id="all-courses" class="course-section">
+  <h3 class="subsection-title">All Courses</h3>
+  <p class="section-description">Browse all courses offered at NSU.</p>
+  <div class="course-filter">
+  <input type="text" class="filter-input" placeholder="Filter by course code or name">
+  <select class="filter-select">
+  <option value="">All Departments</option>
+  <option value="cse">CSE</option>
+  <option value="eee">EEE</option>
+  </select>
+  <button class="btn btn-primary btn-filter">Filter</button>
+  </div>
+  <div class="course-grid" id="all-courses-grid">
+  </div>
+  </div>
+  </section>
+  </main>
+  <footer class="footer">
+  <p class="footer-text">&copy; 2024 NSUer Connect. All rights reserved.</p>
+  </footer>
+  </div>
+  <script src="js/courses.js"></script>
+ </body>
+ </html>

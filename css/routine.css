@@ -1,0 +1,41 @@
+/* Styles specific to routine.html */
+ 
+
+.routine-section {
+    margin-bottom: 30px;
+   }
+   
+  
+   .routine-subsection {
+    margin-bottom: 20px;
+   }
+   
+  
+   .routine-table {
+    width: 100%;
+    border-collapse: collapse;
+   }
+   
+  
+   .table-header {
+    background-color: #f8f9fa;
+   }
+   
+  
+   .table-heading {
+    padding: 0.8rem;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    color: #212529;
+   }
+   
+  
+   .table-cell {
+    padding: 0.8rem;
+    border-bottom: 1px solid #dee2e6;
+   }
+   
+  
+   .table-cell:last-child {
+    border-bottom: none;
+   }
