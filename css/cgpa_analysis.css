@@ -1,37 +1,188 @@
 /* Styles specific to cgpa_analysis.html */
- 
 
 .cgpa-section {
-    margin-bottom: 30px;
-   }
-   
-  
-   .cgpa-subsection {
-    margin-bottom: 20px;
-   }
-   
-  
-   #grade-input-form {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#grade-input-form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px;
-    margin-bottom: 1.5rem;
-   }
-   
-  
-   #course-list {
-    margin-top: 1.5rem;
-   }
-   
-  
-   #calculate-cgpa {
-    margin-top: 1rem;
-   }
-   
-  
-   .cgpa-result {
-    margin-top: 1rem;
-    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.input-row.heading-row {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
+    display: flex; /* Add flexbox */
+}
+
+.input-row.heading-row label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin-right: 20px; /* Add margin to create space */
+}
+
+.input-row.heading-row label:last-child {
+    margin-right: -50px; /* Remove margin from the last label */
+}
+
+.input-row .input-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    flex-grow: 1;
+}
+
+.input-row .input-group:last-child {
+    margin-right: 0;
+}
+
+.input-row .input-group label,
+.input-row .input-group input,
+.input-row .input-group select {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.input-row .remove-row {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+#add-course-row {
+    width: 30px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    align-self: flex-end; 
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: calc(auto + 20px); /* Adjusted margin-left to shift right */
+}
+
+#cgpa-calculator {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Button styles */
+#manually-button {
+    background-color: #ffc107;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    color: black;
+    cursor: pointer;
+    position: relative;
+}
+
+#manually-button::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 10px solid #ffc107;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+}
+
+@media (max-width: 600px) {
+    .input-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .input-row .input-group {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Styles for the grade table */
+.course-table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.course-table th,
+.course-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.course-table th {
+    background-color: #f2f2f2;
+}
+
+.course-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* CGPA Result Styles */
+#result {
+    font-size: 18px;
     font-weight: bold;
-   }
+    margin-top: 20px;
+}
+
+/* Added Styles for table wrapper for overflow*/
+.table-wrapper{
+    overflow-x: auto;
+}
+
+/* Calculate CGPA button style modification */
+#calculate-cgpa {
+    background-color: #007bff; /* Changed button color to match '+' button */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
