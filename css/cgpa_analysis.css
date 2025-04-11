@@ -31,7 +31,7 @@
     font-weight: 600;
     text-align: center;
     margin-bottom: 5px;
-    display: flex; /* Add flexbox */
+    display: flex;
 }
 
 .input-row.heading-row label {
@@ -40,22 +40,20 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    margin-right: 20px; /* Add margin to create space */
 }
 
-.input-row.heading-row label:last-child {
-    margin-right: -50px; /* Remove margin from the last label */
+/* Add margin-left to push Grade and Credits to the right */
+.input-row .input-group:nth-child(2), /* Grade */
+.input-row .input-group:nth-child(3) { /* Credits */
+    margin-left: 20px; /* Adjust as needed */
 }
 
-.input-row .input-group {
+/* Center Credits label and input */
+.input-row .input-group:nth-child(3) { /* Credits */
     display: flex;
     flex-direction: column;
-    margin-right: 15px;
-    flex-grow: 1;
-}
-
-.input-row .input-group:last-child {
-    margin-right: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-row .input-group label,
@@ -67,6 +65,17 @@
     padding: 0 10px;
     font-size: 14px;
     border: 1px solid #ccc;
+}
+
+/* Modified: Increase Credits input width and center text */
+.input-row .input-group select.credits {
+    width: 160px !important;
+    text-align: center;
+}
+/* Remove any top or vertical-align from the Credits label itself */
+.input-row label[for="credits"] {
+    position: static;
+    vertical-align: initial;
 }
 
 .input-row .remove-row {
@@ -81,7 +90,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
+    margin-left: 58px; /* Modified: Remove left margin to align below # */
+    margin-right: 20px;
 }
 
 #add-course-row {
@@ -93,12 +103,12 @@
     color: white;
     font-size: 20px;
     cursor: pointer;
-    align-self: flex-end; 
+    align-self: flex-end;
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: calc(auto + 20px); /* Adjusted margin-left to shift right */
+    margin-left: calc(auto + 20px);
 }
 
 #cgpa-calculator {
@@ -165,19 +175,19 @@
 
 /* CGPA Result Styles */
 #result {
-    font-size: 18px;
+    font-size: 50px;
     font-weight: bold;
     margin-top: 20px;
 }
 
 /* Added Styles for table wrapper for overflow*/
-.table-wrapper{
+.table-wrapper {
     overflow-x: auto;
 }
 
 /* Calculate CGPA button style modification */
 #calculate-cgpa {
-    background-color: #007bff; /* Changed button color to match '+' button */
+    background-color: #007bff;
     color: white;
     padding: 8px 15px;
     border: none;
