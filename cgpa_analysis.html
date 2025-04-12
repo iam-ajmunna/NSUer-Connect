@@ -1,140 +1,182 @@
 <!DOCTYPE html>
- <html lang="en">
- 
+<html lang="en">
 
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NSUer Connect - CGPA Analysis</title>
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/cgpa_analysis.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
- </head>
- 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSUer Connect - CGPA Analysis</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/cgpa_analysis.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
 
- <body>
-  <div class="container">
-  <header class="header">
-  <img src="images/logo.png" alt="NSU Logo" class="logo">
-  <h1 class="header-title">NSUer Connect</h1>
-  <nav class="nav">
-  <ul class="nav-list">
-  <li class="nav-item">
-  <a href="dashboard.html" class="nav-link">
-  <i class="fas fa-home nav-icon"></i>
-  <span class="nav-text">Dashboard</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="courses.html" class="nav-link">
-  <i class="fas fa-book nav-icon"></i>
-  <span class="nav-text">Courses</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="routine.html" class="nav-link">
-  <i class="fas fa-calendar-week nav-icon"></i>
-  <span class="nav-text">Routine</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="reminders.html" class="nav-link">
-  <i class="fas fa-clock nav-icon"></i>
-  <span class="nav-text">Reminders</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="cgpa_analysis.html" class="nav-link active">
-  <i class="fas fa-chart-line nav-icon"></i>
-  <span class="nav-text">CGPA Analysis</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="index.html" class="nav-link">
-  <i class="fas fa-sign-out-alt nav-icon"></i>
-  <span class="nav-text">Logout</span>
-  </a>
-  </li>
-  </ul>
-  </nav>
-  </header>
- 
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="images/logo.png" alt="NSU Logo" class="logo">
+            <h1 class="header-title">NSUer Connect</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="dashboard.html" class="nav-link">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="courses.html" class="nav-link">
+                            <i class="fas fa-book nav-icon"></i>
+                            <span class="nav-text">Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="routine.html" class="nav--link">
+                            <i class="fas fa-calendar-week nav-icon"></i>
+                            <span class="nav-text">Routine</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reminders.html" class="nav-link">
+                            <i class="fas fa-clock nav-icon"></i>
+                            <span class="nav-text">Reminders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="cgpa_analysis.html" class="nav-link active">
+                            <i class="fas fa-chart-line nav-icon"></i>
+                            <span class="nav-text">CGPA Analysis</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-  <main class="main">
-  <section id="cgpa-analysis" class="cgpa-section">
-  <h2 class="section-title">CGPA Analysis</h2>
- 
+        <main class="main">
+            <section id="cgpa-analysis" class="cgpa-section">
+                <h2 class="section-title">CGPA Analysis</h2>
 
-  <div id="cgpa-calculator" class="cgpa-subsection">
-  <h3 class="subsection-title">CGPA Calculator</h3>
-  <form id="grade-input-form" class="form">
-  <div class="input-group">
-  <label for="course-code" class="form-label">Course Code</label>
-  <input type="text" id="course-code" class="form-input" placeholder="e.g., CSE111" required>
-  </div>
-  <div class="input-group">
-  <label for="grade" class="form-label">Grade</label>
-  <select id="grade" class="form-select" required>
-  <option value="">Select Grade</option>
-  <option value="4.0">A+</option>
-  <option value="4.0">A</option>
-  <option value="3.7">A-</option>
-  <option value="3.3">B+</option>
-  <option value="3.0">B</option>
-  <option value="2.7">B-</option>
-  <option value="2.3">C+</option>
-  <option value="2.0">C</option>
-  <option value="1.7">C-</option>
-  <option value="1.0">D</option>
-  <option value="0.0">F</option>
-  </select>
-  </div>
-  <div class="input-group">
-  <label for="credits" class="form-label">Credits</label>
-  <input type="number" id="credits" class="form-input" placeholder="e.g., 3" required>
-  </div>
-  <button type="submit" class="btn btn-primary form-btn">Add Course</button>
-  </form>
-  <div id="course-list" class="course-list-container">
-  <h4 class="subsection-title">Courses Added</h4>
-  <div class="table-wrapper">
-  <table class="course-table">
-  <thead class="table-header">
-  <tr>
-  <th class="table-heading">Course Code</th>
-  <th class="table-heading">Grade</th>
-  <th class="table-heading">Credits</th>
-  </tr>
-  </thead>
-  <tbody class="table-body">
-  </tbody>
-  </table>
-  </div>
-  <button id="calculate-cgpa" class="btn btn-secondary">Calculate CGPA</button>
-  <p class="cgpa-result">Current CGPA: <span id="current-cgpa">\[Current CGPA]</span></p>
-  </div>
-  </div>
- 
+                <div id="cgpa-calculator" class="cgpa-subsection">
+                    <h3 class="subsection-title">CGPA Calculator</h3>
+                    <div id="grade-input-form" class="form">
+                        <div class="input-row heading-row">
+                            <label class="form-label">Course Code</label>
+                            <label class="form-label">Grade</label>
+                            <label class="form-label">Credits</label>
+                            <label class="form-label">#</label>
+                        </div>
 
-  <div id="cgpa-prediction" class="cgpa-subsection">
-  <h3 class="subsection-title">CGPA Prediction</h3>
-  <p class="section-description">Analyze your past performance to predict future CGPA.</p>
-  </div>
-  </section>
-  </main>
- 
+                        <div class="input-row">
+                            <div class="input-group">
+                                <input type="text" class="form-input course-code" placeholder="e.g., CSE111" required>
+                            </div>
+                            <div class="input-group">
+                                <select class="form-select grade" required>
+                                    <option value="">Select Grade</option>
+                                    <option value="4.0">A Excellent (4.0)</option>
+                                    <option value="3.7">A- (3.7)</option>
+                                    <option value="3.3">B+ (3.3)</option>
+                                    <option value="3.0">B Good (3.0)</option>
+                                    <option value="2.7">B- (2.7)</option>
+                                    <option value="2.3">C+ (2.3)</option>
+                                    <option value="2.0">C Average (2.0)</option>
+                                    <option value="1.7">C- (1.7)</option>
+                                    <option value="1.3">D+ (1.3)</option>
+                                    <option value="1.0">D Poor (1.0)</option>
+                                    <option value="0.0">F* Failure (0.0)</option>
+                                    <option value="0.0">I** Incomplete (0.0)</option>
+                                    <option value="0.0">W** Withdrawal (0.0)</option>
+                                    <option value="0.0">R** Retaken (0.0)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select class="form-select credits" required>
+                                    <option value="1">1</option>
+                                    <option value="1.5">1.5</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-danger remove-row">X</button>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <input type="text" class="form-input course-code" placeholder="e.g., CSE111" required>
+                            </div>
+                            <div class="input-group">
+                                <select class="form-select grade" required>
+                                    <option value="">Select Grade</option>
+                                    <option value="4.0">A Excellent (4.0)</option>
+                                    <option value="3.7">A- (3.7)</option>
+                                    <option value="3.3">B+ (3.3)</option>
+                                    <option value="3.0">B Good (3.0)</option>
+                                    <option value="2.7">B- (2.7)</option>
+                                    <option value="2.3">C+ (2.3)</option>
+                                    <option value="2.0">C Average (2.0)</option>
+                                    <option value="1.7">C- (1.7)</option>
+                                    <option value="1.3">D+ (1.3)</option>
+                                    <option value="1.0">D Poor (1.0)</option>
+                                    <option value="0.0">F* Failure (0.0)</option>
+                                    <option value="0.0">I** Incomplete (0.0)</option>
+                                    <option value="0.0">W** Withdrawal (0.0)</option>
+                                    <option value="0.0">R** Retaken (0.0)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select class="form-select credits" required>
+                                    <option value="1">1</option>
+                                    <option value="1.5">1.5</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn btn-danger remove-row">X</button>
+                        </div>
 
-  <footer class="footer">
-  <p class="footer-text">&copy; 2024 NSUer Connect. All rights reserved.</p>
-  </footer>
-  </div>
- 
+                        <button type="button" id="add-course-row" class="btn btn-primary">+</button>
+                    </div>
 
-  <script src="js/cgpa_analysis.js"></script>
- </body>
- 
+                    <div id="course-list" class="course-list-container">
+                        <h4 class="subsection-title">Courses Added</h4>
+                        <div class="table-wrapper">
+                            <table class="course-table">
+                                <thead class="table-header">
+                                    <tr>
+                                        <th class="table-heading">Course Code</th>
+                                        <th class="table-heading">Grade</th>
+                                        <th class="table-heading">Credits</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-body" id="coursesTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="text-align: center;"> <button id="calculate-cgpa" class="btn btn-secondary">Calculate CGPA</button> </div>
+                        <p class="cgpa-result">Total Credits: <span id="total-credits">0</span></p>
+                        <p class="cgpa-result">Current CGPA: <span id="current-cgpa">0.00</span></p>
+                    </div>
+                </div>
 
- </html>
+                <div id="cgpa-prediction" class="cgpa-subsection">
+                    <h3 class="subsection-title">CGPA Prediction</h3>
+                    <p class="section-description">Analyze your past performance to predict future CGPA.</p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-text">&copy; 2025 NSUer Connect. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="cgpa_analysis.js"></script>
+</body>
+
+</html>
