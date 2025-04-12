@@ -169,7 +169,7 @@
    }
   
    /* Responsive Adjustments (Example) */
-   @media (max-width: 768px) {
+   @media (max-width: 1080px) {
     .course-filter {
     flex-direction: column;
     align-items: flex-start;

@@ -12,7 +12,7 @@
     background-color: #f8f9fa;
     color: #343a40;
     /* Improved background */
-    background: linear-gradient(to bottom, #c3d4f4, #bbd1ff, #5f97ff);
+    background: rgba(246, 248, 252, 0.753);
     min-height: 100vh;
     display: flex;
     align-items: center;
