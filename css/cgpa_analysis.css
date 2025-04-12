@@ -5,80 +5,85 @@
     max-width: 800px;
     margin: 20px auto;
     text-align: center;
-}
-
-.main {
+  }
+  
+  .main {
     width: 100%;
     display: flex;
     justify-content: center;
-}
-
-#grade-input-form {
+  }
+  
+  #grade-input-form {
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 800px;
     margin: 0 auto 1.5rem;
-}
-
-.input-row {
+  }
+  
+  .input-row {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-}
-
-.input-row.heading-row {
+  }
+  
+  .input-row.heading-row {
     font-weight: 600;
     text-align: center;
     margin-bottom: 5px;
     display: flex;
-}
-
-.input-row.heading-row label {
+  }
+  
+  .input-row.heading-row label {
     font-size: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-}
-
-/* Add margin-left to push Grade and Credits to the right */
-.input-row .input-group:nth-child(2), /* Grade */
-.input-row .input-group:nth-child(3) { /* Credits */
-    margin-left: 20px; /* Adjust as needed */
-}
-
-/* Center Credits label and input */
-.input-row .input-group:nth-child(3) { /* Credits */
+  }
+  
+  /* Adjusted to ONLY affect the labels within the heading row */
+  .input-row.heading-row label {
+      margin-left: -20px; /* Move labels in heading row to the left */
+  }
+  
+  /* Add margin-left to push Grade and Credits inputs to the right */
+  .input-row .input-group:nth-child(2),
+  .input-row .input-group:nth-child(3) {
+    margin-left: 20px;
+  }
+  
+  /* Center Credits label and input */
+  .input-row .input-group:nth-child(3) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.input-row .input-group label,
-.input-row .input-group input,
-.input-row .input-group select {
+  }
+  
+  .input-row .input-group label,
+  .input-row .input-group input,
+  .input-row .input-group select {
     width: 100%;
     height: 30px;
     line-height: 30px;
     padding: 0 10px;
     font-size: 14px;
     border: 1px solid #ccc;
-}
-
-/* Modified: Increase Credits input width and center text */
-.input-row .input-group select.credits {
+  }
+  
+  /* Modified: Increase Credits input width and center text */
+  .input-row .input-group select.credits {
     width: 160px !important;
     text-align: center;
-}
-/* Remove any top or vertical-align from the Credits label itself */
-.input-row label[for="credits"] {
+  }
+  /* Remove any top or vertical-align from the Credits label itself */
+  .input-row label[for="credits"] {
     position: static;
     vertical-align: initial;
-}
-
-.input-row .remove-row {
+  }
+  
+  .input-row .remove-row {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -90,11 +95,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 88px; /* Modified: Remove left margin to align below # */
+    margin-left: 75px;
     margin-right: 20px;
-}
-
-#add-course-row {
+  }
+  
+  #add-course-row {
     width: 30px;
     height: 35px;
     border-radius: 50%;
@@ -109,16 +114,16 @@
     align-items: center;
     justify-content: center;
     margin-left: calc(auto + 20px);
-}
-
-#cgpa-calculator {
+  }
+  
+  #cgpa-calculator {
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-}
-
-/* Button styles */
-#manually-button {
+  }
+  
+  /* Button styles */
+  #manually-button {
     background-color: #ffc107;
     padding: 8px 15px;
     border: none;
@@ -126,9 +131,9 @@
     color: black;
     cursor: pointer;
     position: relative;
-}
-
-#manually-button::after {
+  }
+  
+  #manually-button::after {
     content: "";
     position: absolute;
     right: -10px;
@@ -137,56 +142,56 @@
     border-left: 10px solid #ffc107;
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
-}
-
-@media (max-width: 600px) {
+  }
+  
+  @media (max-width: 600px) {
     .input-row {
-        flex-direction: column;
-        align-items: stretch;
+      flex-direction: column;
+      align-items: stretch;
     }
-
+  
     .input-row .input-group {
-        margin-right: 0;
-        margin-bottom: 10px;
+      margin-right: 0;
+      margin-bottom: 10px;
     }
-}
-
-/* Styles for the grade table */
-.course-table {
+  }
+  
+  /* Styles for the grade table */
+  .course-table {
     width: 100%;
     margin: 20px auto;
     border-collapse: collapse;
-}
-
-.course-table th,
-.course-table td {
+  }
+  
+  .course-table th,
+  .course-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
-}
-
-.course-table th {
+  }
+  
+  .course-table th {
     background-color: #f2f2f2;
-}
-
-.course-table tr:nth-child(even) {
+  }
+  
+  .course-table tr:nth-child(even) {
     background-color: #f9f9f9;
-}
-
-/* CGPA Result Styles */
-#result {
+  }
+  
+  /* CGPA Result Styles */
+  #result {
     font-size: 50px;
     font-weight: bold;
     margin-top: 20px;
-}
-
-/* Added Styles for table wrapper for overflow*/
-.table-wrapper {
+  }
+  
+  /* Added Styles for table wrapper for overflow*/
+  .table-wrapper {
     overflow-x: auto;
-}
-
-/* Calculate CGPA button style modification */
-#calculate-cgpa {
+  }
+  
+  /* Calculate CGPA button style modification */
+  #calculate-cgpa {
     background-color: #007bff;
     color: white;
     padding: 8px 15px;
@@ -195,4 +200,5 @@
     cursor: pointer;
     font-size: 16px;
     margin-top: 10px;
-}
+  }
+  
