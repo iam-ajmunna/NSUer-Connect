@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly Schedule - Sarah Khan</title>
     <link rel="stylesheet" href="css/routine.css">
+    <style>
+        /* Add this to your style.css or within a <style> tag */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
@@ -46,7 +85,7 @@
                         <td>11:00 AM</td>
                         <td>Lab A101</td>
                         <td>Dr. Rahman</td>
-                        <td><button class="view-details">View</button></td>
+                        <td><button class="view-details" data-subject="Introduction to Programming">View</button></td>
                     </tr>
                     <tr>
                         <td>Database Management</td>
@@ -55,7 +94,7 @@
                         <td>3:00 PM</td>
                         <td>Lecture Hall 202</td>
                         <td>Prof. Ahmed</td>
-                        <td><button class="view-details">View</button></td>
+                        <td><button class="view-details" data-subject="Database Management">View</button></td>
                     </tr>
                     <tr>
                         <td>Web Development Basics</td>
@@ -64,7 +103,7 @@
                         <td>12:00 PM</td>
                         <td>Computer Lab B201</td>
                         <td>Ms. Fatima</td>
-                        <td><button class="view-details">View</button></td>
+                        <td><button class="view-details" data-subject="Web Development Basics">View</button></td>
                     </tr>
                     <tr>
                         <td>Data Structures</td>
@@ -73,7 +112,7 @@
                         <td>4:00 PM</td>
                         <td>Lecture Hall 301</td>
                         <td>Dr. Khan</td>
-                        <td><button class="view-details">View</button></td>
+                        <td><button class="view-details" data-subject="Data Structures">View</button></td>
                     </tr>
                     <tr>
                         <td>Operating Systems</td>
@@ -82,11 +121,49 @@
                         <td>1:00 PM</td>
                         <td>Lab C102</td>
                         <td>Prof. Ali</td>
-                        <td><button class="view-details">View</button></td>
+                        <td><button class="view-details" data-subject="Operating Systems">View</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-subject"></h2>
+            <p id="modal-details">Details will be shown here.</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for modal functionality
+        const modal = document.getElementById("myModal");
+        const modalSubject = document.getElementById("modal-subject");
+        const modalDetails = document.getElementById("modal-details");
+        const viewButtons = document.querySelectorAll(".view-details");
+        const closeButton = document.querySelector(".close");
+
+        viewButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                const subject = this.getAttribute("data-subject");
+                modalSubject.textContent = subject;
+                // You can add more detailed info based on the subject here.
+                modalDetails.textContent = `Detailed information for ${subject} will be displayed here.`; // Replace with actual details.
+                modal.style.display = "block";
+            });
+        });
+
+        closeButton.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+
 </body>
 </html>
