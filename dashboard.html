@@ -1,124 +1,77 @@
 <!DOCTYPE html>
- <html lang="en">
- 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSUer Connect - Routine</title> 
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/dashboard.css"> 
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <img src="images/logo.png" alt="NSU Logo" class="logo">
+                <h1 class="header-title">NSUer Connect</h1>
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="dashboard.html" class="nav-link">
+                                <i class="fas fa-home nav-icon"></i>
+                                <span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="courses.html" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <span class="nav-text">Courses</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="routine.html" class="nav-link active">
+                                <i class="fas fa-calendar-week nav-icon"></i>
+                                <span class="nav-text">Routine</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="reminders.html" class="nav-link">
+                                <i class="fas fa-clock nav-icon"></i>
+                                <span class="nav-text">Reminders</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="cgpa_analysis.html" class="nav-link">
+                                <i class="fas fa-chart-line nav-icon"></i>
+                                <span class="nav-text">CGPA Analysis</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">
+                                <i class="fas fa-sign-out-alt nav-icon"></i>
+                                <span class="nav-text">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NSUer Connect - Dashboard</title>
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
- </head>
- 
+        <main class="main">
+            <div class="course-list">
+                <h2>Schedule for Week 1 (Oct 23 - Oct 29)</h2>
+                <table>
+                    <thead>
+                        </thead>
+                    <tbody>
+                        </tbody>
+                </table>
+            </div>
+        </main>
 
- <body>
-  <div class="container">
-  <header class="header">
-  <img src="images/logo.png" alt="NSU Logo" class="logo">
-  <h1 class="header-title">NSUer Connect</h1>
-  <nav class="nav">
-  <ul class="nav-list">
-  <li class="nav-item">
-  <a href="dashboard.html" class="nav-link active">
-  <i class="fas fa-home nav-icon"></i>
-  <span class="nav-text">Dashboard</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="courses.html" class="nav-link">
-  <i class="fas fa-book nav-icon"></i>
-  <span class="nav-text">Courses</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="routine.html" class="nav-link">
-  <i class="fas fa-calendar-week nav-icon"></i>
-  <span class="nav-text">Routine</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="reminders.html" class="nav-link">
-  <i class="fas fa-clock nav-icon"></i>
-  <span class="nav-text">Reminders</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="cgpa_analysis.html" class="nav-link">
-  <i class="fas fa-chart-line nav-icon"></i>
-  <span class="nav-text">CGPA Analysis</span>
-  </a>
-  </li>
-  <li class="nav-item">
-  <a href="index.html" class="nav-link">
-  <i class="fas fa-sign-out-alt nav-icon"></i>
-  <span class="nav-text">Logout</span>
-  </a>
-  </li>
-  </ul>
-  </nav>
-  </header>
- 
-
-  <main class="main">
-  <section id="dashboard" class="dashboard">
-  <div class="welcome-banner">
-  <h2 class="welcome-title">Welcome, [User Name]!</h2>
-  <p class="welcome-text">Your personalized academic hub.</p>
-  </div>
- 
-
-  <div class="dashboard-widgets">
-  <div class="widget">
-  <div class="widget-header">
-  <h3 class="widget-title">Upcoming Reminders</h3>
-  <a href="reminders.html" class="widget-link">View All</a>
-  </div>
-  <ul class="reminder-list">
-  <li class="reminder-item">
-  <span class="reminder-time">10:00 AM</span>
-  <span class="reminder-text">Quiz on [Course Name]</span>
-  </li>
-  <li class="reminder-item">
-  <span class="reminder-time">5:00 PM</span>
-  <span class="reminder-text">Assignment Due for [Course Name]</span>
-  </li>
-  </ul>
- 
-
-  </div>
-  <div class="widget">
-  <div class="widget-header">
-  <h3 class="widget-title">Current Courses</h3>
-  <a href="courses.html" class="widget-link">View Details</a>
-  </div>
-  <ul class="course-list">
-  <li class="course-item">[Course 1 Name] - [Section]</li>
-  <li class="course-item">[Course 2 Name] - [Section]</li>
-  </ul>
-  </div>
-  <div class="widget">
-  <div class="widget-header">
-  <h3 class="widget-title">CGPA</h3>
-  <a href="cgpa_analysis.html" class="widget-link">Analyze</a>
-  </div>
-  <p class="cgpa-value">[CGPA]</p>
-  </div>
-  </div>
-  </section>
-  </main>
- 
-
-  <footer class="footer">
-  <p class="footer-text">&copy; 2024 NSUer Connect. All rights reserved.</p>
-  </footer>
-  </div>
- 
-
- </body>
- 
-
- </html>
+        <footer class="footer">
+            <p class="footer-text">&copy; 2024 NSUer Connect. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

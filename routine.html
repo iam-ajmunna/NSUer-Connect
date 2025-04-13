@@ -4,50 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly Schedule - Sarah Khan</title>
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/routine.css">
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../css/fontawesome/css/all.min.css">
     <style>
-        /* Add this to your style.css or within a <style> tag */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            border-radius: 8px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
+       
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <img src="../images/logo.png" alt="NSU Logo" class="logo">
+            <h1 class="header-title">NSUer Connect</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../dashboard.html" class="nav-link">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../courses.html" class="nav-link">
+                            <i class="fas fa-book nav-icon"></i>
+                            <span class="nav-text">Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../routine.html" class="nav-link">
+                            <i class="fas fa-calendar-week nav-icon"></i>
+                            <span class="nav-text">Routine</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reminders.html" class="nav-link">
+                            <i class="fas fa-clock nav-icon"></i>
+                            <span class="nav-text">Reminders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../cgpa_analysis.html" class="nav-link active">
+                            <i class="fas fa-chart-line nav-icon"></i>
+                            <span class="nav-text">CGPA Analysis</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
             <h1>Weekly Schedule - Sarah Khan</h1>
             <div class="actions">
                 <button class="action-button">Print</button>
@@ -128,6 +138,7 @@
         </div>
     </div>
 
+    <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -145,25 +156,23 @@
         const closeButton = document.querySelector(".close");
 
         viewButtons.forEach(button => {
-            button.addEventListener("click", function() {
+            button.addEventListener("click", function () {
                 const subject = this.getAttribute("data-subject");
                 modalSubject.textContent = subject;
-                // You can add more detailed info based on the subject here.
-                modalDetails.textContent = `Detailed information for ${subject} will be displayed here.`; // Replace with actual details.
+                modalDetails.textContent = `Detailed information for ${subject} will be displayed here.`;
                 modal.style.display = "block";
             });
         });
 
-        closeButton.addEventListener("click", function() {
+        closeButton.addEventListener("click", function () {
             modal.style.display = "none";
         });
 
-        window.addEventListener("click", function(event) {
+        window.addEventListener("click", function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         });
     </script>
-
 </body>
 </html>
