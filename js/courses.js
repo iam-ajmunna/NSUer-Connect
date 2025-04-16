@@ -1,4 +1,6 @@
-// Course Data (as provided in the previous response - PASTE IT HERE, WITHOUT SPACES in CourseCode)
+import BasePage from './base_page.js';
+import CoursesPageDecorator from './courses_decorator.js';
+
 const allCourses = [
     { Department: 'CSE', CourseCode: 'ENG102', CourseName: 'Introduction to Composition', Category: 'University Core - Languages', Credits: 3 },
     { Department: 'CSE', CourseCode: 'ENG103', CourseName: 'Intermediate Composition', Category: 'University Core - Languages', Credits: 3 },
@@ -164,111 +166,6 @@ const allCourses = [
  const myCourses = [];
 
  function displayCourses() {
-  courseTableBody.innerHTML = '';
-
-  const start = (currentPage - 1) * coursesPerPage;
-  const end = start + coursesPerPage;
-  const pageCourses = filteredCourses.slice(start, end);
-
-  if (pageCourses.length === 0 && filteredCourses.length > 0) {
-  currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
-  displayCourses();
-  displayPaginationControls();
-  return;
-  }
-
-  pageCourses.forEach(course => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-   <td class="table-data">${course.CourseCode}</td>
-   <td class="table-data">${course.CourseName}</td>
-   <td class="table-data">${course.Department}</td>
-   <td class="table-data">${course.Category}</td>
-   <td class="table-data">${course.Credits}</td>
-   <td class="table-data">
-    <button class="btn add-course-btn" data-code="${course.CourseCode}">
-     <i class="fas fa-plus"></i>
-    </button>
-   </td>
-  `;
-  courseTableBody.appendChild(row);
-  });
-
-  // Add event listeners to the "Add" buttons AFTER they are added to the DOM
-  const addCourseButtons = document.querySelectorAll('.add-course-btn');
-  addCourseButtons.forEach(button => {
-  button.addEventListener('click', function() {  // Using an anonymous function
-   addCourseToMyCourses(this.dataset.code);  // Pass course code directly
-  });
-  });
- }
-
- function displayPaginationControls() {
-  pageNumbers.innerHTML = '';
-  const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
-
-  for (let i = 1; i <= totalPages; i++) {
-  const pageNumber = document.createElement('button');
-  pageNumber.textContent = i;
-  pageNumber.classList.add('btn', 'btn-light', 'pagination-button');
-  if (i === currentPage) {
-  pageNumber.classList.add('active');
-  }
-  pageNumber.addEventListener('click', () => {
-  currentPage = i;
-  displayCourses();
-  displayPaginationControls();
-  });
-  pageNumbers.appendChild(pageNumber);
-  }
-
-  const prevButton = document.getElementById('prev-page');
-  const nextButton = document.getElementById('next-page');
-
-  prevButton.disabled = currentPage === 1 || totalPages === 0;
-  nextButton.disabled = currentPage === totalPages || totalPages === 0;
-
-  prevButton.addEventListener('click', () => {
-  if (currentPage > 1) {
-   currentPage--;
-   displayCourses();
-   displayPaginationControls();
-  }
-  });
-
-  nextButton.addEventListener('click', () => {
-  if (currentPage < totalPages && totalPages > 0) {
-   currentPage++;
-   displayCourses();
-   displayPaginationControls();
-  }
-  });
-
-  if (totalPages <= 1) {
-  paginationControls.style.display = 'none';
-  } else {
-  paginationControls.style.display = 'flex';
-  }
- }
-
- function filterCourses() {
-  const selectedDepartment = filterSelect.value;
-  const searchText = filterInput.value.toLowerCase();
-
-  filteredCourses = allCourses.filter(course => {
-  const departmentMatch = selectedDepartment === 'all' || course.Department === selectedDepartment;
-  let textMatch = true;
-  if (searchText) {
-   textMatch = course.CourseCode.toLowerCase().includes(searchText) || course.CourseName.toLowerCase().includes(searchText);
-  }
-  return departmentMatch && textMatch;
-  });
-
-  currentPage = 1;
-  displayCourses();
-  displayPaginationControls();
- }
-
  function addCourseToMyCourses(courseCode) {  // Changed to accept courseCode directly
   const courseToAdd = allCourses.find(course => course.CourseCode === courseCode);
 
@@ -354,13 +251,8 @@ const allCourses = [
   totalGradePointsElement.textContent = totalGradePoints.toFixed(2);
   totalCgpaElement.textContent = cgpa.toFixed(2);
  }
-
- // Initial display
- displayCourses();
- displayPaginationControls();
- filterCourses();
-
- // Event Listeners
- filterButton.addEventListener('click', filterCourses);
- filterInput.addEventListener('input', filterCourses);
- filterSelect.addEventListener('change', filterCourses);
+ 
+ const basePage = new BasePage();
+ const coursesPage = new CoursesPageDecorator(basePage, allCourses, myCourses, gradePoints, addCourseToMyCourses, displayMyCourses, calculateCGPA);
+ coursesPage.render();
+}
