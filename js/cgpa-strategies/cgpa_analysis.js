@@ -1,5 +1,5 @@
 //  Import the necessary classes
-/*import { CGPACalculatorStrategy } from './cgpa-strategies/CGPACalculatorStrategy.js';
+import { CGPACalculatorStrategy } from './cgpa-strategies/CGPACalculatorStrategy.js';
 import { StandardCGPACalculator } from './cgpa-strategies/StandardCGPACalculator.js';
 //import { WeightedCGPACalculator } from './cgpa-strategies/WeightedCGPACalculator.js'; //  If you created this
 
@@ -59,16 +59,16 @@ document.getElementById('calculate-cgpa').addEventListener('click', function() {
 });
 
 //  ---  To switch strategies (hypothetical - button click, etc.)  ---
-//  const weightedButton = document.getElementById('weighted-cgpa-button');
-//  if (weightedButton) {
-//  weightedButton.addEventListener('click', () => {
-//  cgpaContext.setStrategy(new WeightedCGPACalculator());
-//  const courses = getCoursesFromTable();
-//  const cgpa = cgpaContext.calculateCGPA(courses);
-//  document.getElementById('current-cgpa').textContent = cgpa.toFixed(2);
-//  });
-//  }
-*/
+ // const weightedButton = document.getElementById('weighted-cgpa-button');
+// if (weightedButton) {
+// weightedButton.addEventListener('click', () => {
+// cgpaContext.setStrategy(new WeightedCGPACalculator());
+ //const courses = getCoursesFromTable();
+// const cgpa = cgpaContext.calculateCGPA(courses);
+ // document.getElementById('current-cgpa').textContent = cgpa.toFixed(2);
+ // });
+ // }
+
 
 
 
