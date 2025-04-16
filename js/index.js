@@ -44,7 +44,7 @@
     if (user) {
     // Simulate successful login (in a real app, you'd set a session or token)
     alert('Login Successful!');
-    window.location.href = '../dashboard.html'; // Redirect to dashboard
+    window.location.href = './dashboard.html'; // Redirect to dashboard
     } else {
     loginError.textContent = 'Invalid ID or password.';
     }
