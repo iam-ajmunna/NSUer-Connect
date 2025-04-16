@@ -1,5 +1,5 @@
 //  Import the necessary classes
-import { CGPACalculatorStrategy } from './cgpa-strategies/CGPACalculatorStrategy.js';
+/*import { CGPACalculatorStrategy } from './cgpa-strategies/CGPACalculatorStrategy.js';
 import { StandardCGPACalculator } from './cgpa-strategies/StandardCGPACalculator.js';
 //import { WeightedCGPACalculator } from './cgpa-strategies/WeightedCGPACalculator.js'; //  If you created this
 
@@ -68,7 +68,7 @@ document.getElementById('calculate-cgpa').addEventListener('click', function() {
 //  document.getElementById('current-cgpa').textContent = cgpa.toFixed(2);
 //  });
 //  }
-
+*/
 
 
 
