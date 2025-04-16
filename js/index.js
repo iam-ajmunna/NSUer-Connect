@@ -1,93 +1,142 @@
-// index.js
- 
+import BasePage from './Decorator/base_page.js';
+import InitialContentDecorator from './Decorator/initial_content_decorator.js';
 
- // Mock user data (replace with server-side database in a real application)
- const users = [
-    { id: '112233', email: 'user1@nsu.edu', password: '1234' },
-    { id: '222222222', email: 'user2@nsu.edu', password: 'password2' }
-   ];
-   
-  
-   // Tab switching logic
-   const authTabs = document.querySelectorAll('.auth-tab');
-   const authForms = document.querySelectorAll('.auth-form');
-   
-  
-   authTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-    const target = tab.getAttribute('data-tab');
-   
-  
-    authTabs.forEach(t => t.classList.remove('active'));
-    authForms.forEach(form => form.classList.remove('active'));
-   
-  
-    tab.classList.add('active');
-    document.getElementById(target).classList.add('active');
+// Initialize page with decorators
+const basePage = new BasePage();
+const initialPage = new InitialContentDecorator(basePage);
+initialPage.render();
+
+// Fallback users (only used if PHP backend fails)
+const fallbackUsers = [
+  { id: '2211796', password: 'test123' }, // Add your test credentials
+  { id: '112233', password: '1234' }
+];
+
+// Utility functions
+function showMessage(elementId, message, isError = true) {
+  const element = document.getElementById(elementId);
+  element.textContent = message;
+  element.style.color = isError ? 'red' : 'green';
+  setTimeout(() => element.textContent = '', 3000);
+}
+
+function togglePasswordVisibility(input, toggleButton) {
+  if (input.type === 'password') {
+    input.type = 'text';
+    toggleButton.textContent = '🔓';
+  } else {
+    input.type = 'password';
+    toggleButton.textContent = '🔒';
+  }
+}
+
+// Setup event listeners after DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  // Password toggle functionality
+  document.querySelectorAll('.password-toggle').forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      const input = e.target.previousElementSibling;
+      togglePasswordVisibility(input, e.target);
     });
-   });
-   
-  
-   // Mock login
-   document.getElementById('login').addEventListener('submit', function(event) {
+  });
+
+  // Tab switching logic
+  const authTabs = document.querySelectorAll('.auth-tab');
+  const authForms = document.querySelectorAll('.auth-form');
+
+  authTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      
+      authTabs.forEach(t => t.classList.remove('active'));
+      authForms.forEach(form => form.classList.remove('active'));
+      
+      tab.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+
+  // Login form handler with PHP backend and fallback
+  document.getElementById('login')?.addEventListener('submit', async function(event) {
     event.preventDefault();
-   
-  
-    const loginId = document.getElementById('login-id').value;
-    const loginPassword = document.getElementById('login-password').value;
-    const loginError = document.getElementById('login-error');
-   
-  
-    const user = users.find(u => u.id === loginId && u.password === loginPassword);
-   
-  
-    if (user) {
-    // Simulate successful login (in a real app, you'd set a session or token)
-    alert('Login Successful!');
-    window.location.href = './dashboard.html'; // Redirect to dashboard
-    } else {
-    loginError.textContent = 'Invalid ID or password.';
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="spinner"></span> Authenticating...';
+    
+    // Reset error states
+    document.getElementById('login-id').classList.remove('input-error');
+    document.getElementById('login-password').classList.remove('input-error');
+    
+    const loginId = document.getElementById('login-id').value.trim();
+    const loginPassword = document.getElementById('login-password').value.trim();
+
+    if (!loginId || !loginPassword) {
+      showMessage('login-error', 'Please enter both ID and password');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      return;
     }
-   });
-   
-  
-   // Mock signup
-   document.getElementById('signup').addEventListener('submit', function(event) {
+
+    try {
+      // Try PHP authentication first
+      const response = await fetch('php/auth.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          nsu_id: loginId,
+          password: loginPassword
+      })
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response not ok');
+      }
+
+      const data = await response.json();
+      
+      if (data.success) {
+        // Store user data in session
+        sessionStorage.setItem('currentUser', JSON.stringify(data.user || { nsu_id: loginId }));
+        showMessage('login-error', 'Login successful! Redirecting...', false);
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+      } else {
+        throw new Error(data.error || 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Authentication error:', error);
+      
+      // Fallback to hardcoded check if PHP fails
+      const fallbackUser = fallbackUsers.find(u => 
+        u.id === loginId && u.password === loginPassword
+      );
+      
+      if (fallbackUser) {
+        showMessage('login-error', 'Login successful!', false);
+        sessionStorage.setItem('currentUser', JSON.stringify({ nsu_id: loginId }));
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+      } else {
+        showMessage('login-error', error.message.includes('Network') ? 
+          'Connection error. Trying Again After Sometime...' : error.message);
+        document.getElementById('login-id').classList.add('input-error');
+        document.getElementById('login-password').classList.add('input-error');
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+    }
+  });
+
+  // Signup form handler
+  document.getElementById('signup')?.addEventListener('submit', function(event) {
     event.preventDefault();
-   
-  
-    const signupId = document.getElementById('signup-id').value;
-    const signupEmail = document.getElementById('signup-email').value;
-    const signupPassword = document.getElementById('signup-password').value;
-    const signupConfirmPassword = document.getElementById('signup-confirm-password').value;
-    const signupError = document.getElementById('signup-error');
-   
-  
-    if (signupPassword !== signupConfirmPassword) {
-    signupError.textContent = 'Passwords do not match.';
-    return;
-    }
-   
-  
-    // Simulate user creation (in a real app, you'd save to a database)
-    const existingUser = users.find(u => u.id === signupId || u.email === signupEmail);
-    if (existingUser) {
-    signupError.textContent = 'ID or email already exists.';
-    } else {
-    users.push({ id: signupId, email: signupEmail, password: signupPassword });
-    alert('Sign Up Successful! Please login.');
-    // Switch back to login tab
-    authTabs.forEach(t => t.classList.remove('active'));
-    authForms.forEach(form => form.classList.remove('active'));
-    authTabs[0].classList.add('active');
-    authForms[0].classList.add('active');
-    document.getElementById('login-form').classList.add('active');
-    document.getElementById('signup-form').classList.remove('active');
-    document.getElementById('login-error').textContent = '';
-    document.getElementById('signup-error').textContent = '';
-    document.getElementById('signup-id').value = '';
-    document.getElementById('signup-email').value = '';
-    document.getElementById('signup-password').value = '';
-    document.getElementById('signup-confirm-password').value = '';
-    }
-   });
+    showMessage('signup-error', 'Account creation is currently disabled. Please contact admin.');
+  });
+});
