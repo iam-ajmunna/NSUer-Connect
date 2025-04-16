@@ -1,41 +1,181 @@
-/* Styles specific to routine.html */
- 
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-.routine-section {
-    margin-bottom: 30px;
-   }
-   
-  
-   .routine-subsection {
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: center; /* Center the header content horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack logo, title, and nav vertically */
+    padding: 20px;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content within the header-content div */
+    width: 100%; /* Ensure it takes full width of the header */
+}
+
+.logo {
+    margin-bottom: 10px; /* Add some space between logo and title */
+}
+
+
+h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #333;
+}
+
+.actions {
+    display: flex;
+}
+
+.action-button {
+    background-color: #2979ff; /* Blue button */
+    color: white;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.semester-selection {
+    padding: 20px;
+    background-color: #f0f8ff; /* Light blue background */
+    border-bottom: 1px solid #ddd;
+}
+
+.nav {
+    margin-top: 20px; /* Add space between title and nav */
+    width: 100%; /* Make navigation take full width */
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center; /* Center navigation items */
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    margin: 0 10px; /* Add spacing between nav items */
+}
+
+.main {
+    margin-top: 20px; /* Add space between header and main content */
+    padding: 20px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.course-list {
+    padding: 20px;
+}
+
+h2 {
+    color: #333;
     margin-bottom: 20px;
-   }
-   
-  
-   .routine-table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-   }
-   
-  
-   .table-header {
-    background-color: #f8f9fa;
-   }
-   
-  
-   .table-heading {
-    padding: 0.8rem;
+}
+
+th, td {
+    padding: 12px 15px;
     text-align: left;
-    border-bottom: 2px solid #dee2e6;
-    color: #212529;
-   }
-   
-  
-   .table-cell {
-    padding: 0.8rem;
-    border-bottom: 1px solid #dee2e6;
-   }
-   
-  
-   .table-cell:last-child {
-    border-bottom: none;
-   }
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #e0e0e0;
+    font-weight: bold;
+}
+
+.view-details {
+    background-color: #4caf50; /* Green button */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+      /* Add this to your style.css or within a <style> tag */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        border-radius: 8px;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .actions {
+        margin-top: 10px;
+    }
+    .action-button {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    table {
+        font-size: 0.9em;
+    }
+}
