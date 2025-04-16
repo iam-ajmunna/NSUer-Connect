@@ -1,6 +1,6 @@
 <!DOCTYPE html>
- <html lang="en">
- 
+<html lang="en">
+
 
  <head>
   <meta charset="UTF-8">
@@ -13,105 +13,168 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/fontawesome/css/all.min.css">
  </head>
- 
-
- <body>
+     
+<body>
     <div class="container">
-        <header class="header">
-        <img src="./images/logo.png" alt="NSU Logo" class="logo">
-        <h1 class="header-title">NSUer Connect</h1>
-        <nav class="nav">
-        <ul class="nav-list">
-        <li class="nav-item">
-        <a href="./dashboard.html" class="nav-link">
-        <i class="fas fa-home nav-icon"></i>
-        <span class="nav-text">Dashboard</span>
-        </a>
-        </li>
-        <li class="nav-item">
+        <div class="header">
+            <img src="../images/logo.png" alt="NSU Logo" class="logo">
+            <h1 class="header-title">NSUer Connect</h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../dashboard.html" class="nav-link">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../courses.html" class="nav-link">
+                            <i class="fas fa-book nav-icon"></i>
+                            <span class="nav-text">Courses</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../routine.html" class="nav-link active">
+                            <i class="fas fa-calendar-week nav-icon"></i>
+                            <span class="nav-text">Routine</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../reminders.html" class="nav-link">
+                            <i class="fas fa-clock nav-icon"></i>
+                            <span class="nav-text">Reminders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../cgpa_analysis.html" class="nav-link">
+                            <i class="fas fa-chart-line nav-icon"></i>
+                            <span class="nav-text">CGPA Analysis</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-sign-out-alt nav-icon"></i>
+                            <span class="nav-text">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
-        <a href="../courses.html" class="nav-link">
+            <h1>Weekly Schedule - Sarah Khan</h1>
+            <div class="actions">
+                <button class="action-button">Print</button>
+                <button class="action-button">Export</button>
+            </div>
+        </div>
 
-        <i class="fas fa-book nav-icon"></i>
-        <span class="nav-text">Courses</span>
-        </a>
-        </li>
-        <li class="nav-item">
+        <div class="semester-selection">
+            <label for="week">Select Week:</label>
+            <select id="week">
+                <option value="week1">Week 1 (Oct 23 - Oct 29)</option>
+                <option value="week2">Week 2 (Oct 30 - Nov 05)</option>
+            </select>
+        </div>
 
-        <a href="../routine.html" class="nav-link active">
+        <div class="course-list">
+            <h2>Schedule for Week 1 (Oct 23 - Oct 29)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Day</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Location</th>
+                        <th>Instructor</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Introduction to Programming</td>
+                        <td>Monday</td>
+                        <td>9:00 AM</td>
+                        <td>11:00 AM</td>
+                        <td>Lab A101</td>
+                        <td>Dr. Rahman</td>
+                        <td><button class="view-details" data-subject="Introduction to Programming">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>Database Management</td>
+                        <td>Tuesday</td>
+                        <td>1:00 PM</td>
+                        <td>3:00 PM</td>
+                        <td>Lecture Hall 202</td>
+                        <td>Prof. Ahmed</td>
+                        <td><button class="view-details" data-subject="Database Management">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>Web Development Basics</td>
+                        <td>Wednesday</td>
+                        <td>10:00 AM</td>
+                        <td>12:00 PM</td>
+                        <td>Computer Lab B201</td>
+                        <td>Ms. Fatima</td>
+                        <td><button class="view-details" data-subject="Web Development Basics">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>Data Structures</td>
+                        <td>Thursday</td>
+                        <td>2:00 PM</td>
+                        <td>4:00 PM</td>
+                        <td>Lecture Hall 301</td>
+                        <td>Dr. Khan</td>
+                        <td><button class="view-details" data-subject="Data Structures">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>Operating Systems</td>
+                        <td>Friday</td>
+                        <td>11:00 AM</td>
+                        <td>1:00 PM</td>
+                        <td>Lab C102</td>
+                        <td>Prof. Ali</td>
+                        <td><button class="view-details" data-subject="Operating Systems">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <i class="fas fa-calendar-week nav-icon"></i>
-        <span class="nav-text">Routine</span>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a href="./reminders.html" class="nav-link">
-        <i class="fas fa-clock nav-icon"></i>
-        <span class="nav-text">Reminders</span>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a href="./cgpa_analysis.html" class="nav-link">
-        <i class="fas fa-chart-line nav-icon"></i>
-        <span class="nav-text">CGPA Analysis</span>
-        </a>
-        </li>
-        <li class="nav-item">
-        <a href="./index.html" class="nav-link">
-        <i class="fas fa-sign-out-alt nav-icon"></i>
-        <span class="nav-text">Logout</span>
-        </a>
-        </li>
-        </ul>
-        </nav>
-        </header>
- 
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-subject"></h2>
+            <p id="modal-details">Details will be shown here.</p>
+        </div>
+    </div>
 
-  <main class="main">
-  <section id="routine" class="routine-section">
-  <h2 class="section-title">My Routine</h2>
- 
+    <script>
+        // JavaScript for modal functionality
+        const modal = document.getElementById("myModal");
+        const modalSubject = document.getElementById("modal-subject");
+        const modalDetails = document.getElementById("modal-details");
+        const viewButtons = document.querySelectorAll(".view-details");
+        const closeButton = document.querySelector(".close");
 
-  <div id="routine-schedule" class="routine-subsection">
-  <h3 class="subsection-title">Schedule</h3>
-  <div class="table-wrapper">
-  <table class="routine-table">
-  <thead class="table-header">
-  <tr>
-  <th class="table-heading">Day</th>
-  <th class="table-heading">Time</th>
-  <th class="table-heading">Course</th>
-  <th class="table-heading">Room</th>
-  </tr>
-  </thead>
-  <tbody class="table-body">
-  <tr>
-  <td class="table-cell">[Day 1]</td>
-  <td class="table-cell">[Time 1]</td>
-  <td class="table-cell">[Course 1]</td>
-  <td class="table-cell">\[Room 1]</td>
-  </tr>
-  <tr>
-  <td class="table-cell">[Day 2]</td>
-  <td class="table-cell">[Time 2]</td>
-  <td class="table-cell">[Course 2]</td>
-  <td class="table-cell">[Room 2]</td>
-  </tr>
-  </tbody>
-  </table>
-  </div>
-  </div>
-  </section>
-  </main>
- 
+        viewButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const subject = this.getAttribute("data-subject");
+                modalSubject.textContent = subject;
+                modalDetails.textContent = `Detailed information for ${subject} will be displayed here.`;
+                modal.style.display = "block";
+            });
+        });
 
-  <footer class="footer">
-  <p class="footer-text">&copy; 2024 NSUer Connect. All rights reserved.</p>
-  </footer>
-  </div>
- 
+        closeButton.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
 
- </body>
- 
-
- </html>
+        window.addEventListener("click", function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
