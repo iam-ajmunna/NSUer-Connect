@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize adapters with error handling
   let phpAdapter, firebaseAdapter;
-  
+
   try {
     // 1. Try loading PHP adapter first
     const { default: PhpAuthAdapter } = await import('./Adapter/PhpAuthAdapter.js');
@@ -82,9 +82,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
 
-    // 3. All attempts failed
-    throw new Error(phpAdapter ? 
-      "PHP login failed. Firebase not available." : 
+     // 3. Hardcoded Fallback
+     if (
+        (username === '2211796' && password === '1111') ||
+        (username === '2233550' && password === '2222')
+      ) {
+        console.log("Logged in via Hardcoded");
+        return { success: true, adapter: 'hardcoded' };
+      }
+
+    // 4. All attempts failed
+    throw new Error(phpAdapter ?
+      "PHP login failed. Firebase not available." :
       "All authentication methods failed");
   }
 
@@ -105,9 +114,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       const result = await loginUser(username, password);
       if (result.success) {
         // Store user session
-        const user = await result.adapter.getCurrentUser();
+        let user = { nsu_id: username };
+        if(result.adapter != 'hardcoded'){
+            user = await result.adapter.getCurrentUser();
+        }
+
         sessionStorage.setItem('currentUser', JSON.stringify(user || { nsu_id: username }));
-        
+
         showMessage('login-error', 'Login successful! Redirecting...', false);
         setTimeout(() => window.location.href = 'dashboard.html', 1500);
       }

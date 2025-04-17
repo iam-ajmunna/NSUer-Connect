@@ -15,7 +15,7 @@ export default class DashboardDecorator extends PageDecorator {
     return `
       <section class="dashboard">
         <div class="welcome-banner">
-          <h2 class="welcome-title">Welcome, [User Name]!</h2>
+          <h2 class="welcome-title">Welcome, Assaduzzaman Munna!</h2>
           <p class="welcome-text">Your personalized academic hub.</p>
         </div>
         <div class="dashboard-widgets">
@@ -26,12 +26,12 @@ export default class DashboardDecorator extends PageDecorator {
             </div>
             <ul class="reminder-list">
               <li class="reminder-item">
-                <span class="reminder-time">10:00 AM</span>
-                <span class="reminder-text">Quiz on [Course Name]</span>
+                <span class="reminder-time">02:40 PM</span>
+                <span class="reminder-text">Final Project Demo on CSE327</span>
               </li>
               <li class="reminder-item">
-                <span class="reminder-time">5:00 PM</span>
-                <span class="reminder-text">Assignment Due for [Course Name]</span>
+                <span class="reminder-time">12:00 PM</span>
+                <span class="reminder-text">Assignment Submission for CSE373</span>
               </li>
             </ul>
           </div>
@@ -41,8 +41,9 @@ export default class DashboardDecorator extends PageDecorator {
               <a href="courses.html" class="widget-link">View Details</a>
             </div>
             <ul class="course-list">
-              <li class="course-item">[Course 1 Name] - [Section]</li>
-              <li class="course-item">[Course 2 Name] - [Section]</li>
+              <li class="course-item">CSE327 - 08</li>
+              <li class="course-item">CSE373 - 13</li>
+              <li class="course-item">CSE299 - 06</li>
             </ul>
           </div>
           <div class="widget">
@@ -50,7 +51,7 @@ export default class DashboardDecorator extends PageDecorator {
               <h3 class="widget-title">CGPA</h3>
               <a href="cgpa_analysis.html" class="widget-link">Analyze</a>
             </div>
-            <p class="cgpa-value">[CGPA]</p>
+            <p class="cgpa-value">3.70</p>
           </div>
         </div>
       </section>
