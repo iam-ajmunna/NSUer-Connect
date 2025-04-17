@@ -6,12 +6,6 @@ const basePage = new BasePage();
 const initialPage = new InitialContentDecorator(basePage);
 initialPage.render();
 
-// Fallback users (only used if PHP backend fails)
-const fallbackUsers = [
-  { id: '2211796', password: 'test123' }, // Add your test credentials
-  { id: '112233', password: '1234' }
-];
-
 // Utility functions
 function showMessage(elementId, message, isError = true) {
   const element = document.getElementById(elementId);
@@ -23,7 +17,7 @@ function showMessage(elementId, message, isError = true) {
 function togglePasswordVisibility(input, toggleButton) {
   if (input.type === 'password') {
     input.type = 'text';
-    toggleButton.textContent = '🔓';
+    toggleButton.textContent = '👁️';
   } else {
     input.type = 'password';
     toggleButton.textContent = '🔒';
@@ -56,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Login form handler with PHP backend and fallback
+  // Login form handler with PHP backend
   document.getElementById('login')?.addEventListener('submit', async function(event) {
     event.preventDefault();
     const submitBtn = this.querySelector('button[type="submit"]');
@@ -80,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     try {
-      // Try PHP authentication first
+      // Send login request to PHP backend
       const response = await fetch('php/auth.php', {
         method: 'POST',
         headers: {
@@ -89,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         body: new URLSearchParams({
           nsu_id: loginId,
           password: loginPassword
-      })
+        })
       });
 
       if (!response.ok) {
@@ -110,24 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       console.error('Authentication error:', error);
-      
-      // Fallback to hardcoded check if PHP fails
-      const fallbackUser = fallbackUsers.find(u => 
-        u.id === loginId && u.password === loginPassword
-      );
-      
-      if (fallbackUser) {
-        showMessage('login-error', 'Login successful!', false);
-        sessionStorage.setItem('currentUser', JSON.stringify({ nsu_id: loginId }));
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1500);
-      } else {
-        showMessage('login-error', error.message.includes('Network') ? 
-          'Connection error. Trying Again After Sometime...' : error.message);
-        document.getElementById('login-id').classList.add('input-error');
-        document.getElementById('login-password').classList.add('input-error');
-      }
+      showMessage('login-error', error.message.includes('Network') ? 
+        'Connection error. Please try again later...' : error.message);
+      document.getElementById('login-id').classList.add('input-error');
+      document.getElementById('login-password').classList.add('input-error');
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
