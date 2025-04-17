@@ -1,18 +1,14 @@
 import BasePage from './Decorator/base_page.js';
 import InitialContentDecorator from './Decorator/index_decorator.js';
+import PhpAuthAdapter from './Adapter/PhpAuthAdapter.js';
+import FirebaseAuthAdapter from './Adapter/FirebaseAuthAdapter.js';
 
 // Initialize page with decorators
 const basePage = new BasePage();
 const initialPage = new InitialContentDecorator(basePage);
 initialPage.render();
 
-// Fallback users (only used if PHP backend fails)
-const fallbackUsers = [
-  { id: '2211796', password: 'test123' }, // Add your test credentials
-  { id: '112233', password: '1234' }
-];
-
-// Utility functions
+// Utility functions and message handling
 function showMessage(elementId, message, isError = true) {
   const element = document.getElementById(elementId);
   element.textContent = message;
@@ -29,6 +25,10 @@ function togglePasswordVisibility(input, toggleButton) {
     toggleButton.textContent = '🔒';
   }
 }
+
+// Initialize authentication adapters
+const phpAuthAdapter = new PhpAuthAdapter();
+const firebaseAuthAdapter = new FirebaseAuthAdapter();
 
 // Setup event listeners after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Login form handler with PHP backend and fallback
+  // Login form handler with fallback
   document.getElementById('login')?.addEventListener('submit', async function(event) {
     event.preventDefault();
     const submitBtn = this.querySelector('button[type="submit"]');
@@ -79,55 +79,65 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    let currentAuthAdapter = null;
+
+    const loginWithFallback = async (username, password) => {
+      try {
+        await phpAuthAdapter.login(username, password);
+        currentAuthAdapter = phpAuthAdapter;
+        sessionStorage.setItem('currentUser', JSON.stringify(await currentAuthAdapter.getCurrentUser()));
+        showMessage('login-error', 'Login successful (PHP)! Redirecting...', false);
+      } catch (phpError) {
+        console.error('PHP Authentication error:', phpError);
+        try {
+          await firebaseAuthAdapter.login(username, password);
+          currentAuthAdapter = firebaseAuthAdapter;
+          sessionStorage.setItem('currentUser', JSON.stringify(await currentAuthAdapter.getCurrentUser()));
+          showMessage('login-error', 'Login successful (Firebase)! Redirecting...', false);
+        } catch (firebaseError) {
+          console.error('Firebase Authentication error:', firebaseError);
+          throw new Error('Both PHP and Firebase authentication failed.');
+        }
+      }
+    };
+
+    const logout = async () => {
+      if (currentAuthAdapter) {
+        try {
+          await currentAuthAdapter.logout();
+          sessionStorage.clear();
+          showMessage('login-error', 'Logout successful!', false);
+        } catch (error) {
+          showMessage('login-error', 'Logout failed.', true);
+        }
+      } else {
+        showMessage('login-error', 'No user is currently logged in.', true);
+      }
+    };
+
+    const isAuthenticated = async () => {
+      if (currentAuthAdapter) {
+        return await currentAuthAdapter.isAuthenticated();
+      }
+      return false;
+    };
+
+    const getCurrentUser = async () => {
+      if (currentAuthAdapter) {
+        return await currentAuthAdapter.getCurrentUser();
+      }
+      return null;
+    };
+
     try {
-      // Try PHP authentication first
-      const response = await fetch('php/auth.php', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          nsu_id: loginId,
-          password: loginPassword
-      })
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response not ok');
-      }
-
-      const data = await response.json();
-      
-      if (data.success) {
-        // Store user data in session
-        sessionStorage.setItem('currentUser', JSON.stringify(data.user || { nsu_id: loginId }));
-        showMessage('login-error', 'Login successful! Redirecting...', false);
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1500);
-      } else {
-        throw new Error(data.error || 'Invalid credentials');
-      }
+      await loginWithFallback(loginId, loginPassword);
+      setTimeout(() => {
+        window.location.href = 'dashboard.html';
+      }, 1500);
     } catch (error) {
-      console.error('Authentication error:', error);
-      
-      // Fallback to hardcoded check if PHP fails
-      const fallbackUser = fallbackUsers.find(u => 
-        u.id === loginId && u.password === loginPassword
-      );
-      
-      if (fallbackUser) {
-        showMessage('login-error', 'Login successful!', false);
-        sessionStorage.setItem('currentUser', JSON.stringify({ nsu_id: loginId }));
-        setTimeout(() => {
-          window.location.href = 'dashboard.html';
-        }, 1500);
-      } else {
-        showMessage('login-error', error.message.includes('Network') ? 
-          'Connection error. Trying Again After Sometime...' : error.message);
-        document.getElementById('login-id').classList.add('input-error');
-        document.getElementById('login-password').classList.add('input-error');
-      }
+      showMessage('login-error', error.message, true);
+      document.getElementById('login-id').classList.add('input-error');
+      document.getElementById('login-password').classList.add('input-error');
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = originalText;
