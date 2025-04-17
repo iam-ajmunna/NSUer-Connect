@@ -1,5 +1,5 @@
 import BasePage from './Decorator/base_page.js';
-import InitialContentDecorator from './Decorator/initial_content_decorator.js';
+import InitialContentDecorator from './Decorator/index_decorator.js';
 
 // Initialize page with decorators
 const basePage = new BasePage();
