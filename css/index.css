@@ -79,3 +79,74 @@
     font-size: 0.9rem;
     text-align: center;
    }
+
+  /* Password field styles */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 1rem;
+    color: #333; /* Black and white icon */
+    opacity: 0.7;
+  }
+  
+  .password-toggle:hover {
+    opacity: 1;
+  }
+  
+  /* Error state - only applied after failed attempt */
+  .input-error {
+    border-color: #ff6b6b !important;
+  }
+  
+  /* Remove default validation styling */
+  input:invalid, input:valid {
+    border-color: initial;
+  }
+
+  .password-toggle::after {
+    filter: grayscale(100%) contrast(200%);
+  }
+
+  /* Spinner animation */
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error states */
+.input-error {
+  border-color: #ff6b6b !important;
+}
+
+/* Form messages */
+.form-message {
+  min-height: 1.5em;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+}
+
+/* Disabled button state */
+button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
