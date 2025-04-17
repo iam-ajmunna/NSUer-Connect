@@ -172,7 +172,79 @@ const gradePoints = {
 // Array to store the user's added courses
 const myCourses = [];
 
+
 function displayCourses() {
+
+//  Builder Class (Applied from here)
+//builder class and ocncrete builder class
+class CourseTableRowBuilder {
+    constructor() {
+    this.row = document.createElement('tr');
+    }
+  
+    addCell(value, className = 'table-data') {
+    const cell = document.createElement('td');
+    cell.classList.add(className);
+    cell.textContent = value;
+    this.row.appendChild(cell);
+    return this;
+    }
+  
+    addActionButton(text, className, dataCode, clickHandler) {
+        const cell = document.createElement('td');
+        const button = document.createElement('button');
+        button.innerHTML = text; // Use innerHTML to allow icons
+        button.classList.add(...className.split(' ')); // Handles multiple classes
+        button.dataset.code = dataCode;
+        button.addEventListener('click', clickHandler.bind(button)); // Ensure correct 'this' context
+        cell.appendChild(button);
+        this.row.appendChild(cell);
+        return this;
+      }
+  
+    getRow() {
+    return this.row;
+    }
+   }
+  //main for builder design pattern and also haldle pagenation and logic to display the correct page of courses
+   function displayCourses() {
+    const courseTableBody = document.getElementById('course-table-body');
+  courseTableBody.innerHTML = '';
+  
+    const start = (currentPage - 1) * coursesPerPage;
+    const end = start + coursesPerPage;
+    const pageCourses = filteredCourses.slice(start, end);
+  
+    if (pageCourses.length === 0 && filteredCourses.length > 0) {
+    currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
+    displayCourses();
+    displayPaginationControls();
+    return;
+    }
+  
+    pageCourses.forEach(course => {
+    const rowBuilder = new CourseTableRowBuilder(); // Create a builder instance
+    const row = rowBuilder
+    .addCell(course.CourseCode)
+    .addCell(course.CourseName)
+    .addCell(course.Department)
+    .addCell(course.Category)
+    .addCell(course.Credits)
+    .addActionButton(
+    '<i class="fas fa-plus"></i>',
+    'btn btn-success',
+    course.CourseCode,
+    function() { addCourseToMyCourses(this.dataset.code); }
+    )
+    .getRow();
+  
+    courseTableBody.appendChild(row);
+    });
+   }
+
+
+ /*function displayCourses() {
+
   courseTableBody.innerHTML = '';
   
   const pageCourses = iterator.next();  // Get courses for the current page
@@ -209,7 +281,8 @@ function displayCourses() {
       addCourseToMyCourses(this.dataset.code);  // Pass course code directly
     });
   });
-}
+ }*/
+
 
 function displayPaginationControls() {
   pageNumbers.innerHTML = '';
