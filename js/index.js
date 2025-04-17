@@ -8,6 +8,33 @@ initialPage.render();
 
 // Auth system with proper fallback
 document.addEventListener('DOMContentLoaded', async () => {
+  const authTabs = document.querySelectorAll('.auth-tab');
+  const authForms = document.querySelectorAll('.auth-form');
+
+  authTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+          // Deactivate all tabs and forms
+          authTabs.forEach(t => t.classList.remove('active'));
+          authForms.forEach(f => f.classList.remove('active'));
+
+          // Activate the clicked tab
+          tab.classList.add('active');
+
+          // Activate the corresponding form
+          const formId = tab.dataset.tab;
+          document.getElementById(formId).classList.add('active');
+      });
+  });
+
+  document.querySelectorAll('.password-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const passwordInput = toggle.previousElementSibling;
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      toggle.textContent = type === 'password' ? '👀' : '👁️';
+    });
+  });
+
   // Show loading state
   const loadingIndicator = document.createElement('div');
   loadingIndicator.className = 'auth-loading';
@@ -142,13 +169,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       setTimeout(() => element.textContent = '', 5000);
     }
   }
-
-  // Password toggle
-  document.querySelectorAll('.password-toggle').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      const input = e.target.previousElementSibling;
-      input.type = input.type === 'password' ? 'text' : 'password';
-      e.target.textContent = input.type === 'password' ? '🔒' : '🔓';
-    });
-  });
 });
