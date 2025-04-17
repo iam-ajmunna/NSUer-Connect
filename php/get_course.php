@@ -1,36 +1,21 @@
 <?php
 
-include 'db_config.php';
-
-$conn = getDBConnection();
+require_once 'proxy/CourseDataProxy.php';
 
 $limit = 50;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-$offset = ($page - 1) * $limit;
 
-$sql = "SELECT CourseCode, CourseName, CrHour, CourseDescription, Prerequisite FROM courses LIMIT $limit OFFSET $offset";
-$result = $conn->query($sql);
-
-$courses = [];
-
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $courses[] = $row;
-    }
-}
-
-$totalCoursesResult = $conn->query("SELECT COUNT(*) AS total FROM courses");
-$totalCourses = $totalCoursesResult->fetch_assoc()['total'];
-$totalPages = ceil($totalCourses / $limit);
+// Use the Proxy to access course data
+$dataAccess = new CourseDataProxy();
+$result = $dataAccess->getCourses($page, $limit);
 
 $response = [
-    'data' => $courses,
-    'totalPages' => $totalPages,
-    'currentPage' => $page,
+    'data' => $result['data'],
+    'totalPages' => $result['totalPages'],
+    'currentPage' => $result['currentPage'],
 ];
 
 header('Content-Type: application/json');
 echo json_encode($response);
 
-closeDBConnection(); 
 ?>

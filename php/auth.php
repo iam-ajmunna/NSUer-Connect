@@ -26,39 +26,34 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-if (!isset($_SERVER['CONTENT_TYPE']) || stripos($_SERVER['CONTENT_TYPE'], 'application/json') === false) {
+// Update Content-Type check for form data (since index.js sends application/x-www-form-urlencoded)
+if (!isset($_SERVER['CONTENT_TYPE']) || stripos($_SERVER['CONTENT_TYPE'], 'application/x-www-form-urlencoded') === false) {
     http_response_code(415);
     echo json_encode([
         'success' => false,
-        'error' => 'Content-Type must be application/json',
+        'error' => 'Content-Type must be application/x-www-form-urlencoded',
     ]);
     exit;
 }
 
-include 'db_config.php';
+require_once 'proxy/UserDataProxy.php';
 
 $response = ['success' => false, 'error' => ''];
 
 try {
-    $input = json_decode(file_get_contents('php://input'), true);
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        throw new Exception('Invalid JSON format');
-    }
+    // Parse form data
+    $nsu_id = isset($_POST['nsu_id']) ? trim($_POST['nsu_id']) : '';
+    $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-    if (empty($input['nsu_id']) || empty($input['password'])) {
+    if (empty($nsu_id) || empty($password)) {
         throw new Exception('Both ID and password are required');
     }
 
-    $nsu_id = trim($input['nsu_id']);
-    $password = trim($input['password']);
+    // Use the Proxy to access user data
+    $dataAccess = new UserDataProxy();
+    $user = $dataAccess->getUserById($nsu_id);
 
-    $conn = getDBConnection();
-    $stmt = $conn->prepare("SELECT * FROM users WHERE nsu_id = ?");
-    $stmt->bind_param("s", $nsu_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 0) {
+    if ($user === null) {
         throw new Exception('User not found');
     }
 
@@ -82,7 +77,6 @@ try {
     http_response_code(400);
 } finally {
     echo json_encode($response);
-    closeDBConnection(); 
     exit;
 }
 ?>
