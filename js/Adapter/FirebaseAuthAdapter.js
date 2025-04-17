@@ -1,11 +1,24 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
 import AuthInterface from "./AuthInterface.js";
 
+
 class FirebaseAuthAdapter extends AuthInterface {
   constructor(firebaseConfig) {
+    const firebaseConfig = {
+      apiKey: "AIzaSyBCVUfpmXqdgitv-cmAJ-BQtv67Tt1NBwM",
+      authDomain: "nsuer-connect.firebaseapp.com",
+      projectId: "nsuer-connect",
+      storageBucket: "nsuer-connect.firebasestorage.app",
+      messagingSenderId: "980081739885",
+      appId: "1:980081739885:web:f9dfb68dd022236040d764",
+      measurementId: "G-6EF5Q9N4WL"
+    };
     super();
     this.app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     this.auth = getAuth(this.app);
   }
 
