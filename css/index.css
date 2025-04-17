@@ -1,5 +1,15 @@
 /* Styles specific to index.html (Login/Signup) */
  
+.container {
+  max-width: 100%;
+  width:20vw;
+  margin: 1rem;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+ }
+ 
 
 .auth-forms {
     width: 100%;
