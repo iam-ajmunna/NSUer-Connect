@@ -1,10 +1,72 @@
 import BasePage from './Decorator/base_page.js';
 import CGPAPageDecorator from './Decorator/cgpa_analysis_decorator.js';
 
-
+//For Devcorator design patter
 const basePage = new BasePage();
 const cgpaPage = new CGPAPageDecorator(basePage);
 cgpaPage.render();
+
+//for strategy design patter
+
+//import { CGPACalculatorStrategy } from './cgpa-strategies/CGPACalculatorStrategy.js';
+import { StandardCGPACalculator } from './cgpa-strategies/StandardCGPACalculator.js';
+//import { WeightedCGPACalculator } from './cgpa-strategies/WeightedCGPACalculator.js'; 
+
+
+function getCoursesFromTable() {
+    const table = document.getElementById('coursesTableBody');
+    if (!table) {
+        console.error('Could not find coursesTableBody element');
+        return [];
+    }
+    const rows = table.querySelectorAll('tr');
+    return Array.from(rows).map(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length < 3) {
+            console.error('Row does not contain enough cells');
+            return null; // Or some other error handling
+        }
+        return {
+            code: cells[0].textContent,
+            grade: cells[1].textContent,
+            credits: cells[2].textContent
+        };
+    }).filter(course => course !== null); // Filter out any null courses
+}
+
+//  Context Class
+class CGPACalculatorContext {
+    constructor(strategy) {
+        this.strategy = strategy || new StandardCGPACalculator(); //  Default strategy
+    }
+
+    setStrategy(strategy) {
+        this.strategy = strategy;
+    }
+
+    calculateCGPA(courses) {
+        if (!this.strategy) {
+            console.error('No strategy set for CGPA calculation');
+            return 0.00;
+        }
+        return this.strategy.calculateCGPA(courses);
+    }
+}
+
+//  Create the Context with the default strategy
+const cgpaContext = new CGPACalculatorContext();
+
+//  Modify your calculateCGPA function
+document.getElementById('calculate-cgpa').addEventListener('click', function() {
+    const courses = getCoursesFromTable();
+    if (courses.length === 0) {
+        document.getElementById('current-cgpa').textContent = '0.00';
+        return;
+    }
+    const cgpa = cgpaContext.calculateCGPA(courses);
+    document.getElementById('current-cgpa').textContent = isNaN(cgpa) ? '0.00' : cgpa.toFixed(2);
+});
+
 
 
 let courses = []; // Array to store course data
