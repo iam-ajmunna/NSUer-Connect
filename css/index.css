@@ -150,3 +150,78 @@ button[disabled] {
   opacity: 0.7;
   cursor: not-allowed;
 }
+
+.loading-spinner, .auth-error {
+  padding: 15px;
+  margin: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.loading-spinner {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.auth-error {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.loading-msg {
+  padding: 10px;
+  margin: 10px 0;
+  background: #f8f9fa;
+  border-left: 3px solid #007bff;
+  color: #333;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(0,0,0,0.1);
+  border-radius: 50%;
+  border-top-color: #007bff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Add to your index.css */
+.auth-loading, .auth-error {
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.auth-loading {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.auth-error {
+  background: #ffebee;
+  color: #c62828;
+  border-left: 4px solid #c62828;
+}
+
+.auth-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0,0,0,0.2);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
