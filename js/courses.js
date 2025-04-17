@@ -1,5 +1,7 @@
 import BasePage from './Decorator/base_page.js';
 import CoursesPageDecorator from './Decorator/courses_decorator.js';
+import CoursesIterator from './Iterator_courses/courses_iterator.js';
+
 
 const basePage = new BasePage();
 const coursesPage = new CoursesPageDecorator(basePage);
@@ -19,10 +21,16 @@ const totalCgpaElement = document.getElementById('total-cgpa');
 
 const coursesPerPage = 60;
 let currentPage = 1;
+
 let allCourses = [];
 let filteredCourses = [];
 
 // This object maps letter grades to grade points
+
+let filteredCourses = allCourses;
+let iterator;  // Declare iterator here
+
+// This object maps letter grades to grade points as in the image
 const gradePoints = {
   'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7,
   'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0,
@@ -31,6 +39,7 @@ const gradePoints = {
 
 // Array to store the user's added courses
 const myCourses = [];
+
 
 async function fetchCourses(page = 1) {
   try {
@@ -58,13 +67,13 @@ async function fetchCourses(page = 1) {
 
 function displayCourses() {
   courseTableBody.innerHTML = '';
-
-  const start = (currentPage - 1) * coursesPerPage;
-  const end = start + coursesPerPage;
-  const pageCourses = filteredCourses.slice(start, end);
+  
+  const pageCourses = iterator.next();  // Get courses for the current page
 
   if (pageCourses.length === 0 && filteredCourses.length > 0) {
     currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
+
+
     displayCourses();
     displayPaginationControls();
     return;
@@ -91,12 +100,14 @@ function displayCourses() {
   const addCourseButtons = document.querySelectorAll('.add-course-btn');
   addCourseButtons.forEach(button => {
     button.addEventListener('click', function() {
+
       addCourseToMyCourses(this.dataset.code);
     });
   });
 }
 
 function displayPaginationControls(totalPages) {
+
   pageNumbers.innerHTML = '';
   totalPages = totalPages || Math.ceil(filteredCourses.length / coursesPerPage);
 
@@ -109,7 +120,9 @@ function displayPaginationControls(totalPages) {
     }
     pageNumber.addEventListener('click', () => {
       currentPage = i;
+
       fetchCourses(currentPage); // Fetch new page
+
     });
     pageNumbers.appendChild(pageNumber);
   }
@@ -124,13 +137,14 @@ function displayPaginationControls(totalPages) {
     if (currentPage > 1) {
       currentPage--;
       fetchCourses(currentPage);
-    }
+
   });
 
   nextButton.addEventListener('click', () => {
     if (currentPage < totalPages && totalPages > 0) {
       currentPage++;
       fetchCourses(currentPage);
+
     }
   });
 
@@ -154,7 +168,8 @@ function filterCourses() {
     return departmentMatch && textMatch;
   });
 
-  currentPage = 1;
+  iterator = new CoursesIterator(filteredCourses, coursesPerPage);  // Reinitialize iterator when filtering
+  currentPage = 1;  // Reset page to 1
   displayCourses();
   displayPaginationControls();
 }
@@ -245,6 +260,7 @@ function calculateCGPA() {
   totalCgpaElement.textContent = cgpa.toFixed(2);
 }
 
+
 // Initial fetch
 fetchCourses();
 
@@ -252,3 +268,4 @@ fetchCourses();
 filterButton.addEventListener('click', filterCourses);
 filterInput.addEventListener('input', filterCourses);
 filterSelect.addEventListener('change', filterCourses);
+
