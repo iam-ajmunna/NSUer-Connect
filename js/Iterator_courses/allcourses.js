@@ -78,20 +78,15 @@ filterButton.addEventListener('click', () => {
 
 // ─── PAGINATION BUTTONS ──────────────────────────────────
 
+prevBtn.addEventListener('click', () => {
+  iterator.goToPreviousPage();
+  updateView();
+});
+
 nextBtn.addEventListener('click', () => {
-    console.log('--- Next Button Clicked ---');
-    console.log('Before goToNextPage:', { ...iterator }); // Log a copy of the iterator object
-    iterator.goToNextPage();
-    console.log('After goToNextPage:', { ...iterator });
-    updateView();
-    console.log('After updateView:', { ...iterator });
-    console.log('--------------------------');
-  });
-  
-  prevBtn.addEventListener('click', () => {
-    iterator.goToPreviousPage();
-    updateView();
-  });
+  iterator.goToNextPage();
+  updateView();
+});
 // ─── INITIAL LOAD ─────────────────────────────────────────
 
 updateView();
