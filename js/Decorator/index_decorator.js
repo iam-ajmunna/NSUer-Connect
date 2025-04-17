@@ -8,7 +8,7 @@ class InitialContentDecorator extends PageDecorator {
   render() {
     super.render();
     const initialContentHTML = this.getInitialContentHTML();
-    this.page.setContent(initialContentHTML); 
+    this.page.setContent(initialContentHTML);
   }
 
   getInitialContentHTML() {
@@ -42,8 +42,8 @@ class InitialContentDecorator extends PageDecorator {
           <h2 class="form-title">Sign Up</h2>
           <form id="signup" class="form">
             <div class="input-group">
-              <label for="signup-id" class="form-label">NSU ID</label>
-              <input type="text" id="signup-id" class="form-input" placeholder="Enter your NSU ID" required>
+              <label for="signup-nsu-id" class="form-label">NSU ID</label>
+              <input type="text" id="signup-nsu-id" class="form-input" placeholder="Enter your NSU ID" required>
             </div>
             <div class="input-group">
               <label for="signup-email" class="form-label">Email</label>
