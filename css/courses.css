@@ -2,198 +2,249 @@
 
  /* General Styles */
  .courses-section {
-    margin-bottom: 20px;
-   }
-  
-   .section-title {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-   }
-  
-   .subsection-title {
-    font-size: 1.2em;
-    margin-bottom: 5px;
-    color: #555;
-   }
-  
-   .section-description {
-    font-size: 0.9em;
-    color: #777;
-    margin-bottom: 15px;
-   }
-  
-   /* Filter Styles */
-   .course-filter {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-   }
-  
-   .filter-input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
-    font-size: 0.9em;
-   }
-  
-   .filter-select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
-    font-size: 0.9em;
-   }
-  
-   .btn-filter {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff; /* Use your tab bar color */
-    color: white;
-    cursor: pointer;
-    font-size: 0.9em;
-   }
-  
-   .btn-filter:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-   }
-  
-   /* Table Styles */
-   .table-wrapper {
-    overflow-x: auto; /* Enable horizontal scrolling on small screens */
-   }
-  
-   .course-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 10px;
-   }
-  
-   .table-header {
-    background-color: #f0f0f0;
-   }
-  
-   .table-heading {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    font-size: 0.95em;
-    color: #333;
-   }
-  
-   .table-data {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    font-size: 0.9em;
-    color: #555;
-   }
-  
-   /* Add Course Button */
-   .add-course-btn {
-    background-color: #007bff;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1em;
-    padding: 5px 8px;
-    border-radius: 4px;
-    display: flex; /* Center the icon */
-    align-items: center;
-    justify-content: center;
-   }
-  
-   .add-course-btn:hover {
-    background-color: #0056b3;
-   }
-  
-   .add-course-btn i {
-    color: white; /* Explicitly set the icon color to white */
-   }
-  
-   /* Grade Select */
-   .grade-select {
-    padding: 6px 8px;
-    font-size: 0.9em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-   }
-  
-   /* Pagination Controls */
-   .pagination-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-   }
-  
-   .pagination-button {
-    padding: 8px 12px;
-    margin: 0 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-    color: #555;
-    cursor: pointer;
-    font-size: 0.9em;
-   }
-  
-   .pagination-button:hover {
-    background-color: #f0f0f0;
-   }
-  
-   .pagination-button.active {
-    background-color: #007bff; /* Active page button color */
-    color: white;
-    border-color: #007bff;
-   }
-  
-   /* CGPA Summary */
-   .cgpa-summary-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   }
-  
-   .cgpa-summary-container p {
-    margin: 5px 0;
-    font-size: 1em;
-    color: #333;
-   }
-  
-   /* Responsive Adjustments (Example) */
-   @media (max-width: 1080px) {
-    .course-filter {
-    flex-direction: column;
-    align-items: flex-start;
-    }
-  
-    .filter-input, .filter-select, .btn-filter {
-    margin-bottom: 10px;
-    width: 100%; /* Full width on smaller screens */
-    }
-  
-    .cgpa-summary-container {
-    flex-direction: column;
-    align-items: flex-start;
-    }
-   }
+  margin-bottom: 20px;
+ }
 
-   .course-table .add-course-btn i { color: white; }
+ .section-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+ }
+
+ .subsection-title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  color: #555;
+ }
+
+ .section-description {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 15px;
+ }
+
+ /* Filter Styles */
+ .course-filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+ }
+
+ .filter-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 0.9em;
+ }
+
+ .filter-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 0.9em;
+ }
+
+ .btn-filter {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff; /* Use your tab bar color */
+  color: white;
+  cursor: pointer;
+  font-size: 0.9em;
+ }
+
+ .btn-filter:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+ }
+
+ /* Table Styles */
+ .table-wrapper {
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+ }
+
+ .course-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+ }
+
+ .table-header {
+  background-color: #f0f0f0;
+ }
+
+ .table-heading {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95em;
+  color: #333;
+ }
+
+ .table-data {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.9em;
+  color: #555;
+ }
+
+ /* Add Course Button */
+ .add-course-btn {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 5px 8px;
+  border-radius: 4px;
+  display: flex; /* Center the icon */
+  align-items: center;
+  justify-content: center;
+ }
+
+ .add-course-btn:hover {
+  background-color: #0056b3;
+ }
+
+ .add-course-btn i {
+  color: white; /* Explicitly set the icon color to white */
+ }
+
+ /* Grade Select */
+ .grade-select {
+  padding: 6px 8px;
+  font-size: 0.9em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+ }
+
+ /* Pagination Controls */
+ .pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+ }
+
+ .pagination-button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: #555;
+  cursor: pointer;
+  font-size: 0.9em;
+ }
+
+ .pagination-button:hover {
+  background-color: #f0f0f0;
+ }
+
+ .pagination-button.active {
+  background-color: #007bff; /* Active page button color */
+  color: white;
+  border-color: #007bff;
+ }
+
+ /* CGPA Summary */
+ .cgpa-summary-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+
+ .cgpa-summary-container p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #333;
+ }
+
+ /* Responsive Adjustments (Example) */
+ @media (max-width: 1080px) {
+  .course-filter {
+  flex-direction: column;
+  align-items: flex-start;
+  }
+
+  .filter-input, .filter-select, .btn-filter {
+  margin-bottom: 10px;
+  width: 100%; /* Full width on smaller screens */
+  }
+
+  .cgpa-summary-container {
+  flex-direction: column;
+  align-items: flex-start;
+  }
+ }
+
+ .course-table .add-course-btn i { color: white; }
 
 .courses {
-   padding: 20px;
- }
- .course-item {
-   background: #f9f9f9;
-   padding: 15px;
-   margin-bottom: 10px;
-   border-radius: 5px;
- }
+ padding: 20px;
+}
+.course-item {
+ background: #f9f9f9;
+ padding: 15px;
+ margin-bottom: 10px;
+ border-radius: 5px;
+}
+
+.hist-grades {
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hist-grades h2, .hist-grades h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.hist-grades h3 {
+  margin-top: 20px;
+}
+
+.hist-grades table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.hist-grades th, .hist-grades td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.hist-grades th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.hist-grades .special {
+  background-color: #f0f0f0;
+}
+
+.hist-grades .divider-td {
+  background-color: #fff;
+  border-top: 2px solid #ddd;
+}
+
+.hist-grades .center {
+  text-align: center;
+}
+
+.hist-grades .table-responsive {
+  overflow-x: auto;
+}
