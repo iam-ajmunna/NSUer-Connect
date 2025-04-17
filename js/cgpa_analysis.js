@@ -55,8 +55,6 @@ class CGPACalculatorContext {
 
 //  Create the Context with the default strategy
 const cgpaContext = new CGPACalculatorContext();
-
-//  Modify your calculateCGPA function
 document.getElementById('calculate-cgpa').addEventListener('click', function() {
     const courses = getCoursesFromTable();
     if (courses.length === 0) {
