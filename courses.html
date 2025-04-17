@@ -12,7 +12,25 @@
   <link rel="stylesheet" href="./css/fontawesome/css/all.min.css">
 </head>
 <body>
-  <div class="container"></div>
+  <div class="container">
+    <!-- Courses Table -->
+    <table id="coursesTable">
+      <thead>
+        <tr>
+          <th>Course Code</th>
+          <th>Section</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button id="prevCourses" disabled>Previous</button>
+      <button id="nextCourses" disabled>Next</button>
+    </div>
+  </div>
+
   <script type="module" src="js/courses.js"></script>
 </body>
 </html>

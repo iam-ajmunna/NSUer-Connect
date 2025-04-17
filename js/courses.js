@@ -157,7 +157,7 @@ const totalCreditsElement = document.getElementById('total-credits');
 const totalGradePointsElement = document.getElementById('total-grade-points');
 const totalCgpaElement = document.getElementById('total-cgpa');
 
-const coursesPerPage = 60;
+const coursesPerPage = 20;
 let currentPage = 1;
 let filteredCourses = allCourses;
 let iterator;  // Declare iterator here
@@ -245,7 +245,6 @@ function displayPaginationControls() {
       displayPaginationControls();
     }
   });
-
   nextButton.addEventListener('click', () => {
     if (currentPage < totalPages && totalPages > 0) {
       currentPage++;

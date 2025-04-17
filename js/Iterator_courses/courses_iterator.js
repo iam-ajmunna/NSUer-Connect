@@ -1,38 +1,37 @@
-class CoursesIterator {
-    constructor(courses, coursesPerPage) {
-        this.courses = courses;  // All the filtered courses
-        this.coursesPerPage = coursesPerPage;  // Courses per page
-        this.currentPage = 1;  // Start on the first page
-    }
+// Iterator_courses/courses_iterator.js
 
-    next() {
-        // Get courses for the current page
-        const start = (this.currentPage - 1) * this.coursesPerPage;
-        const end = this.currentPage * this.coursesPerPage;
-        return this.courses.slice(start, end);
-    }
+import CourseIterator from './CourseIterator.js';
 
-    hasNext() {
-        // Check if there's a next page
-        const totalPages = Math.ceil(this.courses.length / this.coursesPerPage);
-        return this.currentPage < totalPages;
-    }
+export default class CoursesIterator extends CourseIterator {
+  constructor(courses, coursesPerPage) {
+    super();
+    this.courses        = courses;
+    this.coursesPerPage = coursesPerPage;
+    this.currentPage    = 1;
+  }
 
-    goToNextPage() {
-        if (this.hasNext()) {
-            this.currentPage++;
-        }
-    }
+  /** Returns the items for the current page. */
+  next() {
+    const start = (this.currentPage - 1) * this.coursesPerPage;
+    const end   = this.currentPage * this.coursesPerPage;
+    return this.courses.slice(start, end);
+  }
 
-    goToPreviousPage() {
-        if (this.currentPage > 1) {
-            this.currentPage--;
-        }
-    }
-
-    reset() {
-        this.currentPage = 1;
-    }
+  /** True if there's another page after the current one. */
+  hasNext() {
+    const totalPages = Math.ceil(this.courses.length / this.coursesPerPage);
+    return this.currentPage < totalPages;
+  }
+goToNextPage() {
+  if (this.hasNext()) this.currentPage++;
 }
-
-export default CoursesIterator;
+  
+goToPreviousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+  reset() {
+    this.currentPage = 1;
+  }
+}
