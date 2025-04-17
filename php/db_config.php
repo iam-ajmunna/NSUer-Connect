@@ -1,20 +1,57 @@
 <?php
-$servername = "localhost"; // Or your specific server hostname
-$username = "root";   // Your database username
-$password = "";    // Your database password
-$dbname = "nsuer_connect";   // Your database name
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+class Database {
+    private static $instance;
+    private $connection;
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "nsuer_connect";
+
+    private function __construct() {
+        echo "Creating new database connection...\n";  
+        $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        if ($this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
+        }
+    }
+
+    public static function getInstance() {
+        if (self::$instance === null) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection() {
+        if ($this->connection === null) {
+            return null; 
+        }
+
+        if ($this->connection->connect_error) {
+            
+            return null; 
+        }
+
+        return $this->connection;
+    }
+
+    public function closeConnection() {
+        if ($this->connection) {
+            $this->connection->close();
+            $this->connection = null; 
+        }
+    }
 }
 
-// Function to get the database connection (for use in other files)
+
 function getDBConnection() {
-    global $conn;
-    return $conn;
+    return Database::getInstance()->getConnection();
 }
+
+function closeDBConnection(){
+    Database::getInstance()->closeConnection();
+}
+
 ?>
