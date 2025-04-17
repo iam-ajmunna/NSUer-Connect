@@ -1,24 +1,23 @@
 import PageDecorator from './page_decorator.js';
 
-class DashboardPageDecorator extends PageDecorator {
+export default class DashboardDecorator extends PageDecorator {
   constructor(page) {
     super(page);
   }
 
   render() {
-    super.render();
+    super.render(); 
     const dashboardHTML = this.getDashboardHTML();
-    this.setContent(dashboardHTML);
+    this.page.setContent(dashboardHTML); 
   }
 
   getDashboardHTML() {
     return `
-      <section id="dashboard" class="dashboard">
+      <section class="dashboard">
         <div class="welcome-banner">
           <h2 class="welcome-title">Welcome, [User Name]!</h2>
           <p class="welcome-text">Your personalized academic hub.</p>
         </div>
-      
         <div class="dashboard-widgets">
           <div class="widget">
             <div class="widget-header">
@@ -58,5 +57,3 @@ class DashboardPageDecorator extends PageDecorator {
     `;
   }
 }
-
-export default DashboardPageDecorator;

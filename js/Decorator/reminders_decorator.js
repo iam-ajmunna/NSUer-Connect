@@ -8,7 +8,7 @@ class RemindersPageDecorator extends PageDecorator {
   render() {
     super.render();
     const remindersHTML = this.getRemindersHTML();
-    this.setContent(remindersHTML);
+    this.page.setContent(remindersHTML); 
   }
 
   getRemindersHTML() {

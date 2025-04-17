@@ -1,4 +1,4 @@
-/* Basic Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,6 @@
     line-height: 1.6;
     background-color: #f8f9fa;
     color: #343a40;
-    /* Improved background */
     background: rgba(246, 248, 252, 0.753);
     min-height: 100vh;
     display: flex;
@@ -23,13 +22,10 @@
    .container {
     max-width: 2160px;
     margin: 1rem;
-    /* Reduced top/bottom margin */
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    /* Increased shadow */
     border-radius: 12px;
-    /* More rounded corners */
    }
    
   
@@ -37,13 +33,11 @@
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 2px solid #e0e0e0;
-    /* Thicker border */
    }
    
   
    .header .logo {
     max-width: 100px;
-    /* Larger logo */
     height: auto;
     margin-bottom: 15px;
    }
@@ -51,14 +45,10 @@
   
    .header .header-title {
     font-size: 2.5rem;
-    /* Larger title */
     color: #1a237e;
-    /* Deeper blue */
     margin-bottom: 0.75em;
     font-weight: 600;
-    /* Bolder title */
     letter-spacing: 1px;
-    /* Add letter spacing */
    }
    
   
@@ -67,13 +57,10 @@
     display: flex;
     justify-content: center;
     background-color: #1a237e;
-    /* Deeper blue */
     padding: 10px 0;
     border-radius: 8px;
-    /* Rounded nav */
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* Subtle nav shadow */
    }
    
   
@@ -90,7 +77,6 @@
     display: flex;
     align-items: center;
     transition: all 0.3s ease-in-out;
-    /* Smooth transition */
    }
    
   
@@ -102,11 +88,8 @@
    .nav ul li a:hover,
    .nav ul li a.active {
     background-color: #3f51b5;
-    /* Lighter blue on hover/active */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Stronger hover shadow */
     transform: translateY(-2px);
-    /* Slight lift on hover */
    }
    
   
@@ -123,14 +106,10 @@
    .section-title {
     margin-bottom: 15px;
     color: #283593;
-    /* Darker section title */
     border-bottom: 3px solid #9fa8da;
-    /* Thicker border */
     padding-bottom: 10px;
     font-size: 2rem;
-    /* Larger section title */
     font-weight: 500;
-    /* Slightly bolder */
    }
    
   
@@ -138,24 +117,17 @@
     text-align: center;
     padding-top: 20px;
     border-top: 2px solid #e0e0e0;
-    /* Thicker border */
     color: #757575;
-    /* Darker footer text */
     font-size: 0.9rem;
    }
    
-  
-   /* Reusable Components */
    .btn {
     padding: 12px 20px;
-    /* Larger buttons */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    /* Smooth transition */
     font-size: 1rem;
-    /* Slightly larger text */
    }
    
   
@@ -163,16 +135,13 @@
     background-color: #1a237e;
     color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Button shadow */
    }
    
   
    .btn-primary:hover {
     background-color: #3f51b5;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Stronger hover shadow */
     transform: translateY(-2px);
-    /* Slight lift on hover */
    }
    
   
@@ -180,16 +149,13 @@
     background-color: #757575;
     color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Button shadow */
    }
    
   
    .btn-secondary:hover {
     background-color: #9e9e9e;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    /* Stronger hover shadow */
     transform: translateY(-2px);
-    /* Slight lift on hover */
    }
    
   
@@ -202,7 +168,6 @@
     display: block;
     margin-bottom: 8px;
     color: #283593;
-    /* Darker label */
     font-weight: 500;
    }
    
@@ -211,9 +176,7 @@
    .form-select {
     width: 100%;
     padding: 12px;
-    /* Larger input fields */
     border: 2px solid #9fa8da;
-    /* Thicker border */
     border-radius: 8px;
     transition: border-color 0.3s ease-in-out;
    }
@@ -229,5 +192,4 @@
   
    .table-wrapper {
     overflow-x: auto;
-    /* Enable horizontal scrolling on small screens */
    }

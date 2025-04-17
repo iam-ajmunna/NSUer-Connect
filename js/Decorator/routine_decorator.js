@@ -8,11 +8,16 @@ class RoutinePageDecorator extends PageDecorator {
   render() {
     super.render();
     const routineHTML = this.getRoutineHTML();
-    this.setContent(routineHTML);
+    this.page.setContent(routineHTML);
   }
 
   getRoutineHTML() {
     return `
+    <h1>Weekly Schedule - Sarah Khan</h1>
+            <div class="actions">
+                <button class="action-button">Print</button>
+                <button class="action-button">Export</button>
+            </div>
       <div class="semester-selection">
         <label for="week">Select Week:</label>
         <select id="week">

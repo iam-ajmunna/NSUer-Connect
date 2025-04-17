@@ -187,3 +187,13 @@
    }
 
    .course-table .add-course-btn i { color: white; }
+
+.courses {
+   padding: 20px;
+ }
+ .course-item {
+   background: #f9f9f9;
+   padding: 15px;
+   margin-bottom: 10px;
+   border-radius: 5px;
+ }

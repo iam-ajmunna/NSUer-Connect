@@ -1,4 +1,11 @@
-// script.js
+import BasePage from './Decorator/base_page.js';
+import CGPAPageDecorator from './Decorator/cgpa_analysis_decorator.js';
+
+
+const basePage = new BasePage();
+const cgpaPage = new CGPAPageDecorator(basePage);
+cgpaPage.render();
+
 
 let courses = []; // Array to store course data
 

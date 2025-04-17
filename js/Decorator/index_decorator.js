@@ -8,7 +8,7 @@ class InitialContentDecorator extends PageDecorator {
   render() {
     super.render();
     const initialContentHTML = this.getInitialContentHTML();
-    this.page.setContent(initialContentHTML);
+    this.page.setContent(initialContentHTML); 
   }
 
   getInitialContentHTML() {

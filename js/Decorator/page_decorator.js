@@ -7,11 +7,15 @@ class PageDecorator extends BasePage {
   }
 
   setContent(htmlContent) {
-    this.page.setContent(htmlContent);
+    if (this.page.setContent) {
+      this.page.setContent(htmlContent);
+    }
   }
 
   render() {
-    this.page.render();
+    if (this.page.render) {
+      this.page.render();
+    }
   }
 }
 
