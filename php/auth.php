@@ -1,3 +1,4 @@
+php
 <?php
 // auth.php
 
@@ -63,7 +64,7 @@ try {
 
     $user = $result->fetch_assoc();
 
-    if ($password !== $user['password']) {
+    if (!password_verify($password, $user['password'])) {
         throw new Exception('Invalid credentials');
     }
 
