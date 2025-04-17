@@ -1,6 +1,6 @@
 import BasePage from './Decorator/base_page.js';
 import CoursesPageDecorator from './Decorator/courses_decorator.js';
-
+import CoursesIterator from './Iterator_courses/courses_iterator.js';
 
 const basePage = new BasePage();
 const coursesPage = new CoursesPageDecorator(basePage);
@@ -145,89 +145,163 @@ const allCourses = [
     { Department: 'BBA', CourseCode: 'BBA436', CourseName: 'Career Management', Category: 'BBA Core Courses', Credits: 3 }
  ];
 
- const courseTableBody = document.getElementById('course-table-body');
- const filterSelect = document.getElementById('filter-select');
- const filterInput = document.getElementById('filter-input');
- const filterButton = document.getElementById('filter-button');
- const paginationControls = document.getElementById('pagination-controls');
- const pageNumbers = document.getElementById('page-numbers');
+const courseTableBody = document.getElementById('course-table-body');
+const filterSelect = document.getElementById('filter-select');
+const filterInput = document.getElementById('filter-input');
+const filterButton = document.getElementById('filter-button');
+const paginationControls = document.getElementById('pagination-controls');
+const pageNumbers = document.getElementById('page-numbers');
 
- const myCoursesTableBody = document.getElementById('my-courses-table-body');
- const totalCreditsElement = document.getElementById('total-credits');
- const totalGradePointsElement = document.getElementById('total-grade-points');
- const totalCgpaElement = document.getElementById('total-cgpa');
+const myCoursesTableBody = document.getElementById('my-courses-table-body');
+const totalCreditsElement = document.getElementById('total-credits');
+const totalGradePointsElement = document.getElementById('total-grade-points');
+const totalCgpaElement = document.getElementById('total-cgpa');
 
- const coursesPerPage = 60;
- let currentPage = 1;
- let filteredCourses = allCourses;
+const coursesPerPage = 60;
+let currentPage = 1;
+let filteredCourses = allCourses;
+let iterator;  // Declare iterator here
 
- //  This object maps letter grades to grade points as in the image
- const gradePoints = {
+// This object maps letter grades to grade points as in the image
+const gradePoints = {
   'A': 4.0, 'A-': 3.7, 'B+': 3.3, 'B': 3.0, 'B-': 2.7,
   'C+': 2.3, 'C': 2.0, 'C-': 1.7, 'D+': 1.3, 'D': 1.0,
   'F': 0.0, 'I': 0.0, 'W': 0.0
- };
+};
 
- // Array to store the user's added courses
- const myCourses = [];
+// Array to store the user's added courses
+const myCourses = [];
 
- function displayCourses() {
+
+function displayCourses() {
+
+//  Builder Class (Applied from here)
+//builder class and ocncrete builder class
+class CourseTableRowBuilder {
+    constructor() {
+    this.row = document.createElement('tr');
+    }
+  
+    addCell(value, className = 'table-data') {
+    const cell = document.createElement('td');
+    cell.classList.add(className);
+    cell.textContent = value;
+    this.row.appendChild(cell);
+    return this;
+    }
+  
+    addActionButton(text, className, dataCode, clickHandler) {
+        const cell = document.createElement('td');
+        const button = document.createElement('button');
+        button.innerHTML = text; // Use innerHTML to allow icons
+        button.classList.add(...className.split(' ')); // Handles multiple classes
+        button.dataset.code = dataCode;
+        button.addEventListener('click', clickHandler.bind(button)); // Ensure correct 'this' context
+        cell.appendChild(button);
+        this.row.appendChild(cell);
+        return this;
+      }
+  
+    getRow() {
+    return this.row;
+    }
+   }
+  //main for builder design pattern and also haldle pagenation and logic to display the correct page of courses
+   function displayCourses() {
+    const courseTableBody = document.getElementById('course-table-body');
   courseTableBody.innerHTML = '';
+  
+    const start = (currentPage - 1) * coursesPerPage;
+    const end = start + coursesPerPage;
+    const pageCourses = filteredCourses.slice(start, end);
+  
+    if (pageCourses.length === 0 && filteredCourses.length > 0) {
+    currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
+    displayCourses();
+    displayPaginationControls();
+    return;
+    }
+  
+    pageCourses.forEach(course => {
+    const rowBuilder = new CourseTableRowBuilder(); // Create a builder instance
+    const row = rowBuilder
+    .addCell(course.CourseCode)
+    .addCell(course.CourseName)
+    .addCell(course.Department)
+    .addCell(course.Category)
+    .addCell(course.Credits)
+    .addActionButton(
+    '<i class="fas fa-plus"></i>',
+    'btn btn-success',
+    course.CourseCode,
+    function() { addCourseToMyCourses(this.dataset.code); }
+    )
+    .getRow();
+  
+    courseTableBody.appendChild(row);
+    });
+   }
 
-  const start = (currentPage - 1) * coursesPerPage;
-  const end = start + coursesPerPage;
-  const pageCourses = filteredCourses.slice(start, end);
+
+ /*function displayCourses() {
+
+  courseTableBody.innerHTML = '';
+  
+  const pageCourses = iterator.next();  // Get courses for the current page
 
   if (pageCourses.length === 0 && filteredCourses.length > 0) {
-  currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
-  displayCourses();
-  displayPaginationControls();
-  return;
+    currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
+    iterator = new CoursesIterator(filteredCourses, coursesPerPage);  // Reinitialize iterator with the correct filtered courses
+    displayCourses();
+    displayPaginationControls();
+    return;
   }
 
   pageCourses.forEach(course => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-   <td class="table-data">${course.CourseCode}</td>
-   <td class="table-data">${course.CourseName}</td>
-   <td class="table-data">${course.Department}</td>
-   <td class="table-data">${course.Category}</td>
-   <td class="table-data">${course.Credits}</td>
-   <td class="table-data">
-    <button class="btn add-course-btn" data-code="${course.CourseCode}">
-     <i class="fas fa-plus"></i>
-    </button>
-   </td>
-  `;
-  courseTableBody.appendChild(row);
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="table-data">${course.CourseCode}</td>
+      <td class="table-data">${course.CourseName}</td>
+      <td class="table-data">${course.Department}</td>
+      <td class="table-data">${course.Category}</td>
+      <td class="table-data">${course.Credits}</td>
+      <td class="table-data">
+        <button class="btn add-course-btn" data-code="${course.CourseCode}">
+          <i class="fas fa-plus"></i>
+        </button>
+      </td>
+    `;
+    courseTableBody.appendChild(row);
   });
 
   // Add event listeners to the "Add" buttons AFTER they are added to the DOM
   const addCourseButtons = document.querySelectorAll('.add-course-btn');
   addCourseButtons.forEach(button => {
-  button.addEventListener('click', function() {  // Using an anonymous function
-   addCourseToMyCourses(this.dataset.code);  // Pass course code directly
+    button.addEventListener('click', function() {
+      addCourseToMyCourses(this.dataset.code);  // Pass course code directly
+    });
   });
-  });
- }
+ }*/
 
- function displayPaginationControls() {
+
+function displayPaginationControls() {
   pageNumbers.innerHTML = '';
   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
 
   for (let i = 1; i <= totalPages; i++) {
-  const pageNumber = document.createElement('button');
-  pageNumber.textContent = i;
-  pageNumber.classList.add('btn', 'btn-light', 'pagination-button');
-  if (i === currentPage) {
-  pageNumber.classList.add('active');
-  }
-  pageNumber.addEventListener('click', () => {
-  currentPage = i;
-  displayCourses();
-  displayPaginationControls();
-  });
-  pageNumbers.appendChild(pageNumber);
+    const pageNumber = document.createElement('button');
+    pageNumber.textContent = i;
+    pageNumber.classList.add('btn', 'btn-light', 'pagination-button');
+    if (i === currentPage) {
+      pageNumber.classList.add('active');
+    }
+    pageNumber.addEventListener('click', () => {
+      currentPage = i;
+      iterator.currentPage = currentPage;  // Update iterator's current page
+      displayCourses();
+      displayPaginationControls();
+    });
+    pageNumbers.appendChild(pageNumber);
   }
 
   const prevButton = document.getElementById('prev-page');
@@ -237,123 +311,126 @@ const allCourses = [
   nextButton.disabled = currentPage === totalPages || totalPages === 0;
 
   prevButton.addEventListener('click', () => {
-  if (currentPage > 1) {
-   currentPage--;
-   displayCourses();
-   displayPaginationControls();
-  }
+    if (currentPage > 1) {
+      currentPage--;
+      iterator.goToPreviousPage();
+      displayCourses();
+      displayPaginationControls();
+    }
   });
 
   nextButton.addEventListener('click', () => {
-  if (currentPage < totalPages && totalPages > 0) {
-   currentPage++;
-   displayCourses();
-   displayPaginationControls();
-  }
+    if (currentPage < totalPages && totalPages > 0) {
+      currentPage++;
+      iterator.goToNextPage();
+      displayCourses();
+      displayPaginationControls();
+    }
   });
 
   if (totalPages <= 1) {
-  paginationControls.style.display = 'none';
+    paginationControls.style.display = 'none';
   } else {
-  paginationControls.style.display = 'flex';
+    paginationControls.style.display = 'flex';
   }
- }
+}
 
- function filterCourses() {
+function filterCourses() {
   const selectedDepartment = filterSelect.value;
   const searchText = filterInput.value.toLowerCase();
 
   filteredCourses = allCourses.filter(course => {
-  const departmentMatch = selectedDepartment === 'all' || course.Department === selectedDepartment;
-  let textMatch = true;
-  if (searchText) {
-   textMatch = course.CourseCode.toLowerCase().includes(searchText) || course.CourseName.toLowerCase().includes(searchText);
-  }
-  return departmentMatch && textMatch;
+    const departmentMatch = selectedDepartment === 'all' || course.Department === selectedDepartment;
+    let textMatch = true;
+    if (searchText) {
+      textMatch = course.CourseCode.toLowerCase().includes(searchText) || course.CourseName.toLowerCase().includes(searchText);
+    }
+    return departmentMatch && textMatch;
   });
 
-  currentPage = 1;
+  iterator = new CoursesIterator(filteredCourses, coursesPerPage);  // Reinitialize iterator when filtering
+  currentPage = 1;  // Reset page to 1
   displayCourses();
   displayPaginationControls();
- }
+}
 
- function addCourseToMyCourses(courseCode) {  // Changed to accept courseCode directly
+function addCourseToMyCourses(courseCode) {
   const courseToAdd = allCourses.find(course => course.CourseCode === courseCode);
 
   if (!courseToAdd) {
-   console.error(`Course with code ${courseCode} not found in allCourses.`);
-   return;
+    console.error(`Course with code ${courseCode} not found in allCourses.`);
+    return;
   }
 
   if (myCourses.some(course => course.CourseCode === courseCode)) {
-   alert('Course already added!');
-   return;
+    alert('Course already added!');
+    return;
   }
 
   myCourses.push({ ...courseToAdd, grade: null, gradePoints: 0.0 });
   displayMyCourses();
   calculateCGPA();
- }
+}
 
- function displayMyCourses() {
+function displayMyCourses() {
   myCoursesTableBody.innerHTML = '';
   myCourses.forEach(course => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-   <td class="table-data">${course.CourseCode}</td>
-   <td class="table-data">${course.CourseName}</td>
-   <td class="table-data">${course.Credits}</td>
-   <td class="table-data">
-    <select class="grade-select" data-code="${course.CourseCode}">
-     <option value="">Select Grade</option>
-     <option value="A" ${course.grade === 'A' ? 'selected' : ''}>A</option>
-     <option value="A-" ${course.grade === 'A-' ? 'selected' : ''}>A-</option>
-     <option value="B+" ${course.grade === 'B+' ? 'selected' : ''}>B+</option>
-     <option value="B" ${course.grade === 'B' ? 'selected' : ''}>B</option>
-     <option value="B-" ${course.grade === 'B-' ? 'selected' : ''}>B-</option>
-     <option value="C+" ${course.grade === 'C+' ? 'selected' : ''}>C+</option>
-     <option value="C" ${course.grade === 'C' ? 'selected' : ''}>C</option>
-     <option value="C-" ${course.grade === 'C-' ? 'selected' : ''}>C-</option>
-     <option value="D+" ${course.grade === 'D+' ? 'selected' : ''}>D+</option>
-     <option value="D" ${course.grade === 'D' ? 'selected' : ''}>D</option>
-     <option value="F" ${course.grade === 'F' ? 'selected' : ''}>F</option>
-     <option value="I" ${course.grade === 'I' ? 'selected' : ''}>I</option>
-     <option value="W" ${course.grade === 'W' ? 'selected' : ''}>W</option>
-    </select>
-   </td>
-   <td class="table-data grade-points">${course.gradePoints !== null ? course.gradePoints.toFixed(2) : '0.00'}</td>
-  `;
-  myCoursesTableBody.appendChild(row);
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="table-data">${course.CourseCode}</td>
+      <td class="table-data">${course.CourseName}</td>
+      <td class="table-data">${course.Credits}</td>
+      <td class="table-data">
+        <select class="grade-select" data-code="${course.CourseCode}">
+          <option value="">Select Grade</option>
+          <option value="A" ${course.grade === 'A' ? 'selected' : ''}>A</option>
+          <option value="A-" ${course.grade === 'A-' ? 'selected' : ''}>A-</option>
+          <option value="B+" ${course.grade === 'B+' ? 'selected' : ''}>B+</option>
+          <option value="B" ${course.grade === 'B' ? 'selected' : ''}>B</option>
+          <option value="B-" ${course.grade === 'B-' ? 'selected' : ''}>B-</option>
+          <option value="C+" ${course.grade === 'C+' ? 'selected' : ''}>C+</option>
+          <option value="C" ${course.grade === 'C' ? 'selected' : ''}>C</option>
+          <option value="C-" ${course.grade === 'C-' ? 'selected' : ''}>C-</option>
+          <option value="D+" ${course.grade === 'D+' ? 'selected' : ''}>D+</option>
+          <option value="D" ${course.grade === 'D' ? 'selected' : ''}>D</option>
+          <option value="F" ${course.grade === 'F' ? 'selected' : ''}>F</option>
+          <option value="I" ${course.grade === 'I' ? 'selected' : ''}>I</option>
+          <option value="W" ${course.grade === 'W' ? 'selected' : ''}>W</option>
+        </select>
+      </td>
+      <td class="table-data grade-points">${course.gradePoints !== null ? course.gradePoints.toFixed(2) : '0.00'}</td>
+    `;
+    myCoursesTableBody.appendChild(row);
   });
 
   const gradeSelects = document.querySelectorAll('.grade-select');
   gradeSelects.forEach(select => {
-   select.addEventListener('change', updateGrade);
+    select.addEventListener('change', updateGrade);
   });
- }
+}
 
- function updateGrade(event) {
+function updateGrade(event) {
   const courseCode = event.target.dataset.code;
   const selectedGrade = event.target.value;
 
   const course = myCourses.find(course => course.CourseCode === courseCode);
   if (course) {
-   course.grade = selectedGrade;
-   course.gradePoints = selectedGrade ? gradePoints[selectedGrade] * course.Credits : 0.0;
-   event.target.parentNode.nextElementSibling.textContent = course.gradePoints !== null ? course.gradePoints.toFixed(2) : '0.00';  // Update displayed grade points
-   calculateCGPA();
+    course.grade = selectedGrade;
+    course.gradePoints = selectedGrade ? gradePoints[selectedGrade] * course.Credits : 0.0;
+    event.target.parentNode.nextElementSibling.textContent = course.gradePoints !== null ? course.gradePoints.toFixed(2) : '0.00';
+    calculateCGPA();
   }
- }
+}
 
- function calculateCGPA() {
+function calculateCGPA() {
   let totalCredits = 0;
   let totalGradePoints = 0;
 
   myCourses.forEach(course => {
-  if (course.grade) {
-   totalCredits += course.Credits;
-   totalGradePoints += gradePoints[course.grade] * course.Credits;
-  }
+    if (course.grade) {
+      totalCredits += course.Credits;
+      totalGradePoints += gradePoints[course.grade] * course.Credits;
+    }
   });
 
   const cgpa = totalCredits > 0 ? totalGradePoints / totalCredits : 0.00;
@@ -361,14 +438,12 @@ const allCourses = [
   totalCreditsElement.textContent = totalCredits.toFixed(2);
   totalGradePointsElement.textContent = totalGradePoints.toFixed(2);
   totalCgpaElement.textContent = cgpa.toFixed(2);
- }
+}
 
- // Initial display
- displayCourses();
- displayPaginationControls();
- filterCourses();
+// Attach event listeners
+filterButton.addEventListener('click', filterCourses);
 
- // Event Listeners
- filterButton.addEventListener('click', filterCourses);
- filterInput.addEventListener('input', filterCourses);
- filterSelect.addEventListener('change', filterCourses);
+// Initialize the iterator with the full list of courses
+iterator = new CoursesIterator(filteredCourses, coursesPerPage);
+displayCourses();
+displayPaginationControls();
