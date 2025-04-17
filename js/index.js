@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
       authForms.forEach(form => form.classList.remove('active'));
       
       tab.classList.add('active');
-      document.getElementById(target).classList.add('active');
+      document.getElementById(target).classList.add('active'); document.getElementById(target).classList.add('auth-form');
     });
   });
 
