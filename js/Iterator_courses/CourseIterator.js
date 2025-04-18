@@ -1,13 +1,7 @@
-// Iterator/CourseIterator.js
+// Iterator_courses/courses_iterator.js
 
-class CourseIterator {
-    next() {
-        throw new Error("next() method must be implemented.");
-    }
-
-    hasNext() {
-        throw new Error("hasNext() method must be implemented.");
-    }
-}
-
-export default CourseIterator;
+export default class CourseIterator {
+    next() { throw new Error("next() must be implemented"); }
+    hasNext() { throw new Error("hasNext() must be implemented"); }
+  }
+  
