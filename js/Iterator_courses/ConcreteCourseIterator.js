@@ -1,10 +1,10 @@
 // Iterator/ConcreteCourseIterator.js
-import CourseIterator from './CourseIterator';
+import CourseIterator from './CourseIterator.js';
 
 class ConcreteCourseIterator extends CourseIterator {
     constructor(courses) {
         super();
-        this.courses = courses;
+        this.courses = Array.isArray(courses) ? courses : [];
         this.index = 0;
     }
 
@@ -17,6 +17,10 @@ class ConcreteCourseIterator extends CourseIterator {
 
     hasNext() {
         return this.index < this.courses.length;
+    }
+
+    reset() {
+        this.index = 0;
     }
 }
 
