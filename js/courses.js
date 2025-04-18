@@ -21,7 +21,7 @@ const totalCreditsElement = document.getElementById('total-credits');
 const totalGradePointsElement = document.getElementById('total-grade-points');
 const totalCgpaElement = document.getElementById('total-cgpa');
 
-const coursesPerPage = 60;
+const coursesPerPage = 20;
 let currentPage = 1;
 
 // Grade points mapping
