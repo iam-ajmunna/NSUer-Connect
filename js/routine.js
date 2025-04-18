@@ -16,7 +16,7 @@ viewButtons.forEach(button => {
     button.addEventListener("click", function () {
         const subject = this.getAttribute("data-subject");
         modalSubject.textContent = subject;
-        modalDetails.textContent = `Detailed information for ${subject} will be displayed here.`;
+        modalDetails.textContent = `Detailed information for ${subject} can be found in NSU Official Website.`;
         modal.style.display = "block";
     });
 });
