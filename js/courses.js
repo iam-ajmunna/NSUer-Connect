@@ -1,6 +1,7 @@
 import BasePage from './Decorator/base_page.js';
 import CoursesPageDecorator from './Decorator/courses_decorator.js';
 import CoursesProxy from './Proxy/courses_proxy.js';
+import CoursesIterator from './Iterator_courses/courses_iterator.js';
 
 const basePage = new BasePage();
 const coursesPage = new CoursesPageDecorator(basePage);
@@ -23,6 +24,7 @@ const totalCgpaElement = document.getElementById('total-cgpa');
 
 const coursesPerPage = 60;
 let currentPage = 1;
+let iterator; // Declare iterator for pagination
 
 // Grade points mapping
 const gradePoints = {
@@ -98,7 +100,7 @@ function init() {
     }
   }
 
-  // Display courses with pagination
+  // Display courses with iterator
   function displayCourses() {
     if (!courseTableBody) {
       console.warn('Cannot display courses: courseTableBody not found');
@@ -115,24 +117,34 @@ function init() {
     };
     console.log('Using filters:', filters);
 
-    const { courses, totalPages } = coursesProxy.getCourses(currentPage, coursesPerPage, filters);
-    console.log(`Received ${courses.length} courses, total pages: ${totalPages}`);
+    // Get filtered courses from proxy
+    const { courses } = coursesProxy.getCourses(1, Number.MAX_SAFE_INTEGER, filters); // Fetch all filtered courses
+    console.log(`Received ${courses.length} courses from proxy`);
 
     if (courses.length === 0) {
       console.warn('No courses to display');
       courseTableBody.innerHTML = '<tr><td colspan="6">No courses found</td></tr>';
-      displayPaginationControls(totalPages);
+      displayPaginationControls(courses.length);
       return;
     }
 
-    if (courses.length === 0 && totalPages > 0) {
+    // Update iterator with filtered courses
+    iterator = new CoursesIterator(courses, coursesPerPage);
+    iterator.currentPage = currentPage; // Set iterator to current page
+
+    // Get courses for the current page
+    const pageCourses = iterator.next();
+    console.log(`Iterator returned ${pageCourses.length} courses for page ${currentPage}`);
+
+    if (pageCourses.length === 0 && courses.length > 0) {
       console.log('No courses on this page, adjusting to last page');
-      currentPage = totalPages;
+      currentPage = Math.ceil(courses.length / coursesPerPage);
+      iterator.currentPage = currentPage;
       displayCourses();
       return;
     }
 
-    courses.forEach((course, index) => {
+    pageCourses.forEach((course, index) => {
       console.log(`Building row ${index + 1}: ${course.CourseCode}`);
       const rowBuilder = new CourseTableRowBuilder();
       const row = rowBuilder
@@ -150,20 +162,22 @@ function init() {
         .getRow();
       courseTableBody.appendChild(row);
     });
-    console.log(`Appended ${courses.length} rows to courseTableBody`);
+    console.log(`Appended ${pageCourses.length} rows to courseTableBody`);
 
-    displayPaginationControls(totalPages);
+    displayPaginationControls(courses.length);
   }
 
   // Display pagination controls
-  function displayPaginationControls(totalPages) {
+  function displayPaginationControls(totalCourses) {
     if (!pageNumbers || !paginationControls) {
       console.warn('Cannot display pagination: pageNumbers or paginationControls not found');
       return;
     }
 
+    const totalPages = Math.ceil(totalCourses / coursesPerPage);
     console.log(`Displaying pagination for ${totalPages} pages`);
     pageNumbers.innerHTML = '';
+
     for (let i = 1; i <= totalPages; i++) {
       const pageNumber = document.createElement('button');
       pageNumber.textContent = i;
@@ -174,6 +188,7 @@ function init() {
       pageNumber.addEventListener('click', () => {
         console.log(`Switching to page ${i}`);
         currentPage = i;
+        iterator.currentPage = currentPage; // Update iterator
         displayCourses();
       });
       pageNumbers.appendChild(pageNumber);
@@ -188,6 +203,7 @@ function init() {
         if (currentPage > 1) {
           console.log('Going to previous page');
           currentPage--;
+          iterator.goToPreviousPage();
           displayCourses();
         }
       });
@@ -201,6 +217,7 @@ function init() {
         if (currentPage < totalPages && totalPages > 0) {
           console.log('Going to next page');
           currentPage++;
+          iterator.goToNextPage();
           displayCourses();
         }
       });
@@ -343,6 +360,10 @@ function init() {
   } else {
     console.warn('Filter button not found. Expected ID: filter-button');
   }
+
+  // Initialize iterator with all courses
+  const initialCourses = coursesProxy.getCourses(1, Number.MAX_SAFE_INTEGER, { department: 'all', search: '' }).courses;
+  iterator = new CoursesIterator(initialCourses, coursesPerPage);
 
   // Initialize
   console.log('Starting initialization');
