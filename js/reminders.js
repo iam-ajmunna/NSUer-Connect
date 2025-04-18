@@ -7,7 +7,7 @@ import { NotificationObserver } from './Observer/notification_observer.js';
 const basePage = new BasePage();
 const reminderPage = new RemindersPageDecorator(basePage);
 reminderPage.render();
-//console.log('After render:', document.querySelector('.container').innerHTML);
+console.log('After render:', document.querySelector('.container').innerHTML);
 
 // Reminder Manager as a Subject
 class ReminderManager extends Subject {
@@ -31,7 +31,7 @@ class ReminderManager extends Subject {
     }
   }
 
-  // Helper to schedule a console log at the reminder's time
+  // Helper to schedule a console log and popup at the reminder's time
   scheduleReminder(reminder) {
     const { description, date, time } = reminder;
     const reminderDateTime = new Date(`${date}T${time}`);
@@ -41,6 +41,7 @@ class ReminderManager extends Subject {
     if (delay > 0) {
       setTimeout(() => {
         console.log(`Reminder: ${description} at ${date} ${time}`);
+        alert(`Reminder: ${description} at ${date} ${time}`);
       }, delay);
     }
   }

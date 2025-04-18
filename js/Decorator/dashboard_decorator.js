@@ -24,16 +24,7 @@ export default class DashboardDecorator extends PageDecorator {
               <h3 class="widget-title">Upcoming Reminders</h3>
               <a href="reminders.html" class="widget-link">View All</a>
             </div>
-            <ul class="reminder-list">
-              <li class="reminder-item">
-                <span class="reminder-time">02:40 PM</span>
-                <span class="reminder-text">Final Project Demo on CSE327</span>
-              </li>
-              <li class="reminder-item">
-                <span class="reminder-time">12:00 PM</span>
-                <span class="reminder-text">Assignment Submission for CSE373</span>
-              </li>
-            </ul>
+            <ul class="reminder-list"></ul>
           </div>
           <div class="widget">
             <div class="widget-header">
