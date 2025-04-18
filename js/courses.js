@@ -239,46 +239,6 @@ class CourseTableRowBuilder {
    }
 
 
- /*function displayCourses() {
-  courseTableBody.innerHTML = '';
-
-  const start = (currentPage - 1) * coursesPerPage;
-  const end = start + coursesPerPage;
-  const pageCourses = filteredCourses.slice(start, end);
-
-  if (pageCourses.length === 0 && filteredCourses.length > 0) {
-  currentPage = Math.ceil(filteredCourses.length / coursesPerPage);
-  displayCourses();
-  displayPaginationControls();
-  return;
-  }
-
-  pageCourses.forEach(course => {
-  const row = document.createElement('tr');
-  row.innerHTML = `
-   <td class="table-data">${course.CourseCode}</td>
-   <td class="table-data">${course.CourseName}</td>
-   <td class="table-data">${course.Department}</td>
-   <td class="table-data">${course.Category}</td>
-   <td class="table-data">${course.Credits}</td>
-   <td class="table-data">
-    <button class="btn add-course-btn" data-code="${course.CourseCode}">
-     <i class="fas fa-plus"></i>
-    </button>
-   </td>
-  `;
-  courseTableBody.appendChild(row);
-  });
-
-  // Add event listeners to the "Add" buttons AFTER they are added to the DOM
-  const addCourseButtons = document.querySelectorAll('.add-course-btn');
-  addCourseButtons.forEach(button => {
-  button.addEventListener('click', function() {  // Using an anonymous function
-   addCourseToMyCourses(this.dataset.code);  // Pass course code directly
-  });
-  });
- }*/
-
  function displayPaginationControls() {
   pageNumbers.innerHTML = '';
   const totalPages = Math.ceil(filteredCourses.length / coursesPerPage);
