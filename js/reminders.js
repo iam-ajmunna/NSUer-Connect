@@ -7,7 +7,7 @@ import { NotificationObserver } from './Observer/notification_observer.js';
 const basePage = new BasePage();
 const reminderPage = new RemindersPageDecorator(basePage);
 reminderPage.render();
-console.log('After render:', document.querySelector('.container').innerHTML);
+//console.log('After render:', document.querySelector('.container').innerHTML);
 
 // Reminder Manager as a Subject
 class ReminderManager extends Subject {
