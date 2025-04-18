@@ -1,8 +1,8 @@
 <?php
 
 class Database {
-    private static $instance;
-    private $connection;
+    private static $instance;//private static variable
+    private $connection;//private instance variable
 
     private $servername = "localhost";
     private $username = "root";
