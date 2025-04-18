@@ -1,3 +1,5 @@
+import PageComponent from './component_interface.js';
+
 export default class BasePage {
   constructor() {
     

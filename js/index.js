@@ -73,3 +73,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 });
+
+// Initializing Munna's PHP and Firebase Adapter
+let phpAdapter, firebaseAdapter;
+
+// প্রথমে PHP Load করার চেষ্টা করবো
+try {
+  const { default: PhpAuthAdapter } = await import('../Adapter/PhpAuthAdapter.js');
+  phpAdapter = new PhpAuthAdapter();
+  console.log("PHP adapter initialized");
+} catch (phpError) {
+  console.error("PHP adapter failed:", phpError);
+}
+
+// তারপর FireBase Load করার চেষ্টা করবো
+try {
+  const { default: FirebaseAuthAdapter } = await import('../Adapter/FirebaseAuthAdapter.js');
+  firebaseAdapter = new FirebaseAuthAdapter({
+    apiKey: "AIzaSyBCVUfpmXqdgitv-cmAJ-BQtv67Tt1NBwM",
+    authDomain: "nsuer-connect.firebaseapp.com",
+    projectId: "nsuer-connect",
+    storageBucket: "nsuer-connect.appspot.com",
+    messagingSenderId: "980081739885",
+    appId: "1:980081739885:web:1c19f430d1acb0dd40d764"
+  });
+  console.log("Firebase adapter initialized");
+} catch (firebaseError) {
+  console.error("Firebase adapter failed:", firebaseError);
+}
+
