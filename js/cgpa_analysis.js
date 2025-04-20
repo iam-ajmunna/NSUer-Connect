@@ -37,7 +37,7 @@ function getCoursesFromTable() {
 //  Context Class
 class CGPACalculatorContext {
     constructor(strategy) {
-        this.strategy = strategy || new StandardCGPACalculator(); //  Default strategy
+        this.strategy = strategy || new StandardCGPACalculator();
     }
 
     setStrategy(strategy) {

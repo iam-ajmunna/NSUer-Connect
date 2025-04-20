@@ -3,6 +3,7 @@ import { CGPACalculatorStrategy } from './CGPACalculatorStrategy.js';
 /**
  * Concrete strategy for calculating CGPA using the standard method.
  */
+
 class StandardCGPACalculator extends CGPACalculatorStrategy {
     calculateCGPA(courses) {
         let totalCredits = 0;
